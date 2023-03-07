@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react'
-import { TypeProduct } from '../../../type'
 import { useDispatch } from 'react-redux'
+import { TypeProduct } from '../../../type'
 import { modalActions } from '../../../store/modal-slice'
 
 function ModalProduct(props: { modalInfo: TypeProduct }) {
@@ -26,10 +26,10 @@ function ModalProduct(props: { modalInfo: TypeProduct }) {
         left={0}
         backgroundColor='blackAlpha.400'
         zIndex={1}
-      ></Box>
+      />
       <Box
         className='modal-content'
-        backgroundColor={'green.300'}
+        backgroundColor='green.300'
         backgroundImage={`url(${modalInfo.mainImage})`}
         backgroundPosition='center'
         backgroundSize='inherit'
