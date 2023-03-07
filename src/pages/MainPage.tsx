@@ -14,10 +14,6 @@ function MainPage() {
     setTimeout(() => setLoading(false), 300)
   }, [])
 
-  useEffect(() => {
-    console.log('productList : ', productList)
-  }, [productList])
-
   return (
     <Default>
       <Container maxW='container.xl'>
