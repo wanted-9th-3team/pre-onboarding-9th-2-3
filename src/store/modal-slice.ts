@@ -12,7 +12,7 @@ const modalSlice = createSlice({
     insertModal(state, action: PayloadAction<TypeProduct>) {
       state.modalInfo = action.payload
     },
-    deleteModal(state) {
+    closeModal(state) {
       state.modalInfo = null
     },
   },
