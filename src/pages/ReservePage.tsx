@@ -1,7 +1,5 @@
 function ReservePage() {
-    return (
-        <></>
-    )
+  return <></>
 }
 
 export default ReservePage
