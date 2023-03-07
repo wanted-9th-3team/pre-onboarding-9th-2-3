@@ -22,6 +22,7 @@ import {
 import { useAppDispatch, useAppSelector } from '../../store/config'
 import { useCallback } from 'react'
 import { setReserve } from '../../store/slices/reserveSlice'
+import { dateConverter } from '../../utils/dateConverter'
 
 interface IProductDetailProp {
   isOpen: boolean
@@ -52,10 +53,6 @@ function ProductDetail({
   const { productList } = useAppSelector(state => state.product)
   const { reserveList } = useAppSelector(state => state.reserve)
   const dispatch = useAppDispatch()
-
-  const getDate = (date: string) => {
-    return new Date(date).toLocaleDateString()
-  }
 
   const addCart = useCallback(() => {
     onClose()
@@ -164,7 +161,7 @@ function ProductDetail({
                 color={useColorModeValue('gray.700', 'gray.200')}
                 fontSize='md'
               >
-                {getDate(registrationDate)}
+                {dateConverter(registrationDate)}
               </Text>
 
               <Text
@@ -183,7 +180,17 @@ function ProductDetail({
           <Button variant='ghost' mr={3} onClick={onClose}>
             닫기
           </Button>
-          <Button variant='solid' colorScheme='messenger' onClick={addCart}>
+          <Button
+            px={8}
+            bg={useColorModeValue('#151f21', 'gray.900')}
+            color={'white'}
+            rounded={'md'}
+            _hover={{
+              transform: 'translateY(-2px)',
+              boxShadow: 'lg',
+            }}
+            onClick={addCart}
+          >
             장바구니 담기
           </Button>
         </ModalFooter>

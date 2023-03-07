@@ -13,6 +13,7 @@ import { StarIcon } from '@chakra-ui/icons'
 import { useCallback } from 'react'
 import { useAppDispatch, useAppSelector } from '../../store/config'
 import ProductDetail from '../ProductDetail'
+import { dateConverter } from '../../utils/dateConverter'
 
 interface IProductItemProps {
   idx: number
@@ -73,7 +74,7 @@ function ProductItem(product: IProductItemProps) {
 
             <Flex justifyContent='space-between' alignContent='center'>
               <Box as='span' ml='2' color='gray.600' fontSize='sm'>
-                {product.registrationDate}
+                {dateConverter(product.registrationDate)}
               </Box>
               <Box
                 fontSize='2xl'
