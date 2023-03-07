@@ -1,4 +1,4 @@
-import Default from "../layout/Default";
+import Default from '../layout/Default'
 
 function MainPage() {
   return (
