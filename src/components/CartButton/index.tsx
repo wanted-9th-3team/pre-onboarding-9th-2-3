@@ -1,5 +1,5 @@
 import { Badge, Button } from '@chakra-ui/react'
-import { MoonIcon, StarIcon, SunIcon } from '@chakra-ui/icons'
+import { StarIcon } from '@chakra-ui/icons'
 import { useAppSelector } from '../../store/config'
 
 function CartButton() {

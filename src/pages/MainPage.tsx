@@ -1,5 +1,5 @@
 import Default from '../layout/Default'
-import { useAppDispatch, useAppSelector } from '../store/config'
+import { useAppSelector } from '../store/config'
 import { useEffect, useState } from 'react'
 import {
   Box,
@@ -15,16 +15,14 @@ import {
   MenuOptionGroup,
   SimpleGrid,
   Text,
-  useCheckboxGroup,
   useColorModeValue,
-  useDisclosure,
   useToast,
 } from '@chakra-ui/react'
 import Loading from '../modules/Loading'
 import ProductItem from '../components/ProductItem'
 import React from 'react'
 import { Product } from '../store/slices/productSlice'
-import Info from '../layout/InfoScreen'
+import Info from '../modules/InfoScreen'
 
 function MainPage() {
   const [loading, setLoading] = useState(true)
@@ -143,8 +141,9 @@ function MainPage() {
               pointerEvents='none'
               color='gray.300'
               fontSize='1.2em'
-              children='₩'
-            />
+            >
+              ₩
+            </InputLeftElement>
             <Input
               placeholder='최소금액을 입력해 주세요.'
               variant='flushed'

@@ -1,7 +1,5 @@
 import {
   Button,
-  Container,
-  Flex,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -9,13 +7,11 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  SimpleGrid,
   Image,
   useColorModeValue,
   Heading,
   Box,
   Text,
-  Link,
   Badge,
   useToast,
 } from '@chakra-ui/react'

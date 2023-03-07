@@ -1,5 +1,4 @@
-import { Box, Heading, Text } from '@chakra-ui/react'
-import { InfoIcon } from '@chakra-ui/icons'
+import { Box, Heading } from '@chakra-ui/react'
 
 export default function Info() {
   return (

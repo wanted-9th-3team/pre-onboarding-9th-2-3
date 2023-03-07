@@ -4,14 +4,8 @@ import {
   Image,
   Badge,
   useColorModeValue,
-  Tooltip,
-  Button,
-  useToast,
   useDisclosure,
 } from '@chakra-ui/react'
-import { StarIcon } from '@chakra-ui/icons'
-import { useCallback } from 'react'
-import { useAppDispatch, useAppSelector } from '../../store/config'
 import ProductDetail from '../ProductDetail'
 import { dateConverter } from '../../utils/dateConverter'
 
@@ -27,11 +21,7 @@ interface IProductItemProps {
 }
 
 function ProductItem(product: IProductItemProps) {
-  const { productList } = useAppSelector(state => state.product)
-  const { reserveList } = useAppSelector(state => state.reserve)
   const { isOpen, onOpen, onClose } = useDisclosure()
-
-  const dispatch = useAppDispatch()
 
   return (
     <>
