@@ -1,8 +1,8 @@
-import { Default } from '../layout/Default'
+import Default from "../layout/Default";
 
 function MainPage() {
   return (
-    <Default pageName={'MainPage'}>
+    <Default>
       <h1>h1</h1>
     </Default>
   )

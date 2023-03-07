@@ -5,10 +5,9 @@ import Footer from '../../modules/Footer'
 
 type Props = {
   children: string | ReactNode
-  pageName: string
 }
 
-export function Default({ children, pageName }: Props) {
+function Default({ children }: Props) {
   return (
     <>
       <Header />
@@ -19,3 +18,5 @@ export function Default({ children, pageName }: Props) {
     </>
   )
 }
+
+export default Default
