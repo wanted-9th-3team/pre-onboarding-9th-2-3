@@ -1,6 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import ITravelInfo from '../../api/TravelDTO'
-import getTravelInfo from '../../api/Travel-api'
 
 interface ITravelState {
   travelList: ITravelInfo[]

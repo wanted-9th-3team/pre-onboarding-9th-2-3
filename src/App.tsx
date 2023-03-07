@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Main from './pages/Main'
 import NotFound from './pages/NotFound'
 import './App.css'
-import getTravelInfo from './api/Travel-api'
+import getTravelInfo from './api/travel-api'
 import { useAppDispatch } from './store/store'
 import { setTravelLists } from './store/travel/travelSlice'
 
