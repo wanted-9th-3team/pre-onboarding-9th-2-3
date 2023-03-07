@@ -1,5 +1,11 @@
+import Information from '../components/main/Information'
+
 function Main() {
-  return <h1>Hello World</h1>
+  return (
+    <div>
+      <Information />
+    </div>
+  )
 }
 
 export default Main

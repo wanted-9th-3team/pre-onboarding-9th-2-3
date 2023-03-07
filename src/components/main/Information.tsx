@@ -9,10 +9,10 @@ function Information() {
   )
 
   const productsJSX = productsInfo.map(item => (
-    <CardProduct key={item.idx} products={item} />
+    <CardProduct key={item.idx} product={item} />
   ))
   return (
-    <Box display={'flex'} alignItems={'center'} flexWrap={'wrap'}>
+    <Box display='flex' alignItems='center' flexWrap='wrap'>
       {productsJSX}
     </Box>
   )

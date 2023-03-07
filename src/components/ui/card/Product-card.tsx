@@ -1,7 +1,7 @@
-import { TypeProduct } from '../../../type'
 import { Box } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../store/modal-slice'
+import { TypeProduct } from '../../../type'
 
 function CardProduct(props: { product: TypeProduct }) {
   const { product } = props
@@ -15,23 +15,23 @@ function CardProduct(props: { product: TypeProduct }) {
   return (
     <Box
       backgroundImage={`url(${product.mainImage})`}
-      backgroundPosition={'center'}
-      backgroundSize={'inherit'}
-      backgroundRepeat={'no-repeat'}
-      width={'15rem'}
-      height={'23rem'}
-      display={'flex'}
-      alignItems={'flex-end'}
+      backgroundPosition='center'
+      backgroundSize='inherit'
+      backgroundRepeat='no-repeat'
+      width='15rem'
+      height='23rem'
+      display='flex'
+      alignItems='flex-end'
       margin={3}
       onClick={setModal}
     >
-      <Box backgroundColor={'beige'} width={'100%'}>
+      <Box backgroundColor='beige' width='100%'>
         <p> {product.idx}</p>
         <h2> {product.name}</h2>
         <p>{product.price}</p>
         <p>{product.spaceCategory}</p>
         <div>
-          <button> 예약</button>
+          <button type='button'> 예약</button>
         </div>
       </Box>
     </Box>

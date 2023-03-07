@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import { mockData } from '../data/mock_data'
+import mockData from '../data/mock_data'
 
 const initialState = {
   allProducts: mockData,

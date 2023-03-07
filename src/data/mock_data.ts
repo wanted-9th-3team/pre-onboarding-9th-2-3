@@ -1,6 +1,6 @@
 import { TypeProduct } from '../type'
 
-export const mockData: TypeProduct[] = [
+const mockData: TypeProduct[] = [
   {
     idx: 1,
     name: '가나다 목장 하루 이용권',
@@ -82,3 +82,5 @@ export const mockData: TypeProduct[] = [
     registrationDate: '2023.01.07 18:00:00',
   },
 ]
+
+export default mockData
