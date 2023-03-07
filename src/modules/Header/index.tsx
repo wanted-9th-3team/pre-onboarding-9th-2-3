@@ -1,6 +1,7 @@
 import { Box, Container, Flex, HStack } from '@chakra-ui/react'
 import Logo from '../Logo'
 import ColorModeButton from '../ColorModeButton'
+import CartButton from '../../components/CartButton'
 
 function Header() {
   return (
@@ -9,6 +10,7 @@ function Header() {
         <Flex align='center' justify='space-between'>
           <Logo />
           <HStack gap={'10px'}>
+            <CartButton />
             <ColorModeButton />
           </HStack>
         </Flex>

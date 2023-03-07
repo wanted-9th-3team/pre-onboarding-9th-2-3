@@ -7,7 +7,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route index path='/main' element={<MainPage />} />
+        <Route index={true} path='/main' element={<MainPage />} />
         <Route path='/reservation' element={<ReservePage />} />
       </Routes>
     </BrowserRouter>

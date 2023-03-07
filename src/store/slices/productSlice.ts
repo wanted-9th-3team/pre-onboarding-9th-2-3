@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { mockData } from '../../mock'
 
 export interface Product {
   idx: number
@@ -16,7 +17,7 @@ export interface CommonState {
 }
 
 const initialState: CommonState = {
-  productList: [],
+  productList: mockData,
 }
 
 export const productSlice = createSlice({

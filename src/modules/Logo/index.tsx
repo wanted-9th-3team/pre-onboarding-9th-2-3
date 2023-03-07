@@ -1,8 +1,9 @@
 function Logo() {
   return (
     <img
-      width='1701'
-      height='622'
+      style={{ borderRadius: '11px' }}
+      width='170'
+      height='60'
       src='https://likealocal.co.kr/wp-content/uploads/2022/02/cropped-대지-1@4x.png'
       className='custom-logo'
       alt='Like a local, 라이크어로컬'
