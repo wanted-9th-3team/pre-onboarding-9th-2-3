@@ -1,7 +1,12 @@
 import { useState } from 'react'
+import { Button } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
 import Mock_Data from '../data/mock_data.json'
 // import FilteredCatagory from '../component/Filter'
-import Modal from '../component/Modal'
+import ModalComponent from '../component/Modal'
+import { open } from '../store/slice/ModalSlice'
+import { RootState } from '../store/store'
+import ItemListCard from '../component/ItemListCard'
 
 const catagory = [
   {
@@ -14,7 +19,7 @@ const catagory = [
   },
 ]
 
-interface IMockData {
+export interface IMockData {
   idx: number
   name: string
   mainImage: string
@@ -22,22 +27,16 @@ interface IMockData {
   spaceCategory: string
   price: number
   maximumPurchases: number
-  registrationDate: Date
+  registrationDate: string
 }
 
 function Home() {
-  const [itemList, setItemList] = useState(Mock_Data)
-  const [isModal, setIsModal] = useState(false)
-  const [modalNumber, setModalNumber] = useState(0)
+  const [itemList, setItemList] = useState<IMockData[]>(Mock_Data)
+  // // const [isModal, setIsModal] = useState(false)
+  // const modalopen = useSelector((state: RootState) => state.modalslcie)
+  // // const [modalNumber, setModalNumber] = useState(0)
   const [selectPrice, setSelecttPrice] = useState('')
   const [selectSpace, setSelectSpace] = useState('')
-
-  const modalHandler = (num: number) => {
-    setIsModal(!isModal)
-    setModalNumber(num)
-  }
-
-  const filteredModal = itemList.filter(le => le.idx === modalNumber)
 
   const filterHandler = (price: string, space: string) => {
     const filteredPrice = itemList.filter(list => {
@@ -50,6 +49,7 @@ function Home() {
       }
       if (price === '20000') {
         const Listpri2 = list.price > 10000 && list.price <= +price
+
         return Listpri2
       }
 
@@ -65,6 +65,8 @@ function Home() {
     })
     // const FiteredList = FilteredCatagory(list, price, space)
     setItemList(filteredSpace)
+    setSelecttPrice('')
+    setSelectSpace('')
   }
   const resetHandler = () => {
     if (itemList.length !== Mock_Data.length) {
@@ -76,42 +78,48 @@ function Home() {
 
   return (
     <div>
+      <h1>ListPage</h1>
       <ul>
         {catagory.map(el => (
           <form key={el.id}>
             <ul>
               {el.price?.map(price => (
-                <button
+                <Button
+                  colorScheme='teal'
+                  variant='outline'
                   key={price}
                   type='button'
                   onClick={() => setSelecttPrice(price)}
                 >
                   {price}
-                </button>
+                </Button>
               ))}
               {el.space?.map(space => (
-                <button
+                <Button
+                  colorScheme='linkedin'
+                  variant='outline'
                   key={space}
                   type='button'
                   onClick={() => setSelectSpace(space)}
                 >
                   {space}
-                </button>
+                </Button>
               ))}
             </ul>
           </form>
         ))}
-        <button
+        <Button
+          colorScheme='messenger'
           type='button'
           onClick={() => filterHandler(selectPrice, selectSpace)}
         >
           제출
-        </button>
-        <button type='button' onClick={resetHandler}>
+        </Button>
+        <Button colorScheme='gray' type='button' onClick={resetHandler}>
           리셋
-        </button>
+        </Button>
       </ul>
-      <ul>
+      {/* <ul>
         {itemList.map(item => (
           <li key={item.idx}>
             <div>
@@ -121,13 +129,34 @@ function Home() {
               <span>{item.price}</span>
               <span>{item.spaceCategory}</span>
             </div>
-            <button type='button' onClick={() => modalHandler(item.idx)}>
+            <Button type='button' onClick={() => modalHandler(item.idx)}>
               예약
-            </button>
+            </Button>
           </li>
         ))}
+      </ul> */}
+      <ul>
+        {itemList &&
+          itemList?.map(items => (
+            <ItemListCard
+              key={items.idx}
+              // idx={items.idx}
+              // name={items.name}
+              // mainImage={items.mainImage}
+              // price={items.price}
+              // spaceCategory={items.spaceCategory}
+              items={items}
+            />
+          ))}
       </ul>
-      {isModal === true ? <Modal modalData={filteredModal} /> : null}
+
+      {/* {isModal === true ? (
+        <ModalComponent
+          modalData={filteredModal}
+          isModal={isModal}
+          closeModal={closeModal}
+        />
+      ) : null} */}
     </div>
   )
 }
