@@ -10,10 +10,16 @@ import {
 } from '@chakra-ui/react'
 import { MouseEvent, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { searchTravelSpaceLists } from '../store/travel/travelSlice'
+import { useAppDispatch } from '../store/store'
+import {
+  searchTravelSpaceLists,
+  setSearchCategory,
+} from '../store/travel/travelSlice'
 
 function SelectBox() {
+  const dispatch = useAppDispatch()
   const tripSpaceList = useSelector(searchTravelSpaceLists)
+
   const priceMinRef = useRef<HTMLDivElement | null>(null)
   const priceMaxRef = useRef<HTMLDivElement | null>(null)
   const [selectSpace, setselectSpace] = useState<string[]>([])
@@ -39,7 +45,7 @@ function SelectBox() {
 
   const sortTripListHandler = () => {
     const sortCategory = { priceRange, selectSpace }
-    console.log(sortCategory)
+    dispatch(setSearchCategory(sortCategory))
   }
 
   return (
