@@ -21,7 +21,7 @@ export const reservationsSlice = createSlice({
         id: nextId,
         text: action.payload.name,
         price: action.payload.price,
-        complete: false,
+        mainImage: action.payload.mainImage,
       })
 
       return state
