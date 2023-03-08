@@ -3,17 +3,22 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import './App.css'
 import Main from './pages/Main'
+import Reservations from './pages/Reservations'
 import NotFound from './pages/NotFound'
+import LayoutHeader from './components/ui/layout/layout-header'
 
 function App() {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Navigate to='/main' />} />
-          <Route path='/main' element={<Main />} />
-          <Route path='*' element={<NotFound />} />
-        </Routes>
+        <LayoutHeader>
+          <Routes>
+            <Route path='/' element={<Navigate to='/main' />} />
+            <Route path='/main' element={<Main />} />
+            <Route path='/reservations' element={<Reservations />} />
+            <Route path='*' element={<NotFound />} />
+          </Routes>
+        </LayoutHeader>
       </BrowserRouter>
     </Provider>
   )
