@@ -10,7 +10,7 @@ export interface TypeProduct {
 }
 
 export interface TypeFilter {
-  space: string | undefined
+  space: string[] | undefined
   minPrice: number | undefined
   maxPrice: number | undefined
 }
