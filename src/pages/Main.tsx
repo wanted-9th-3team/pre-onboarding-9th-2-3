@@ -1,11 +1,6 @@
 import { useState } from 'react'
 import { Button } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
 import Mock_Data from '../data/mock_data.json'
-// import FilteredCatagory from '../component/Filter'
-import ModalComponent from '../component/Modal'
-import { open } from '../store/slice/ModalSlice'
-import { RootState } from '../store/store'
 import ItemListCard from '../component/ItemListCard'
 
 const catagory = [
@@ -32,9 +27,6 @@ export interface IMockData {
 
 function Home() {
   const [itemList, setItemList] = useState<IMockData[]>(Mock_Data)
-  // // const [isModal, setIsModal] = useState(false)
-  // const modalopen = useSelector((state: RootState) => state.modalslcie)
-  // // const [modalNumber, setModalNumber] = useState(0)
   const [selectPrice, setSelecttPrice] = useState('')
   const [selectSpace, setSelectSpace] = useState('')
 
@@ -63,7 +55,6 @@ function Home() {
       }
       return na.spaceCategory === space
     })
-    // const FiteredList = FilteredCatagory(list, price, space)
     setItemList(filteredSpace)
     setSelecttPrice('')
     setSelectSpace('')
@@ -119,44 +110,12 @@ function Home() {
           리셋
         </Button>
       </ul>
-      {/* <ul>
-        {itemList.map(item => (
-          <li key={item.idx}>
-            <div>
-              <span>{item.idx}</span>
-              <span>{item.name}</span>
-              <img src={item.mainImage} alt='' />
-              <span>{item.price}</span>
-              <span>{item.spaceCategory}</span>
-            </div>
-            <Button type='button' onClick={() => modalHandler(item.idx)}>
-              예약
-            </Button>
-          </li>
-        ))}
-      </ul> */}
       <ul>
         {itemList &&
           itemList?.map(items => (
-            <ItemListCard
-              key={items.idx}
-              // idx={items.idx}
-              // name={items.name}
-              // mainImage={items.mainImage}
-              // price={items.price}
-              // spaceCategory={items.spaceCategory}
-              items={items}
-            />
+            <ItemListCard key={items.idx} items={items} />
           ))}
       </ul>
-
-      {/* {isModal === true ? (
-        <ModalComponent
-          modalData={filteredModal}
-          isModal={isModal}
-          closeModal={closeModal}
-        />
-      ) : null} */}
     </div>
   )
 }
