@@ -14,7 +14,7 @@ const filterSlice = createSlice({
     insertFilter(state, action: PayloadAction<TypeFilter>) {
       state.filter = action.payload
     },
-    removeFilter(state) {
+    resetFilter(state) {
       state.filter = undefined
     },
   },
