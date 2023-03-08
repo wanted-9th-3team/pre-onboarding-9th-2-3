@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   RangeSlider,
   RangeSliderTrack,
@@ -11,13 +11,17 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { RootState } from '../../../store'
+import { filterActions } from '../../../store/filter-slice'
+import { TypeFilter } from '../../../type'
 
 function FilterUI() {
   const productsInfo = useSelector(
     (state: RootState) => state.productsSlice.allProducts
   )
+
   const [priceFilter, setPriceFilter] = useState<string[] | undefined>()
   const [spaceFilter, setSpaceFilter] = useState<string[]>([])
+  const dispatch = useDispatch()
 
   const deleteDuplicationSpaceHandler = () => {
     const onlySpace = productsInfo.map(item => item.spaceCategory)
@@ -36,7 +40,14 @@ function FilterUI() {
 
   const deleteDuplicationSpace = [...deleteDuplicationSpaceHandler()]
 
-  const sumbitHandler = () => {}
+  const sumbitHandler = () => {
+    const filterData: TypeFilter = {
+      space: spaceFilter,
+      minPrice: priceFilter !== undefined ? Number(priceFilter[0]) : undefined,
+      maxPrice: priceFilter !== undefined ? Number(priceFilter[1]) : undefined,
+    }
+    dispatch(filterActions.insertFilter(filterData))
+  }
 
   return (
     <Box className='filter'>
@@ -90,7 +101,12 @@ function FilterUI() {
       </Box>
 
       <Box className='filter__buttons' m={5}>
-        <Button type='button' size='md' colorScheme='teal'>
+        <Button
+          type='button'
+          size='md'
+          colorScheme='teal'
+          onClick={sumbitHandler}
+        >
           적용
         </Button>
       </Box>
