@@ -4,8 +4,10 @@ import { RootState } from '../store'
 
 interface TravelState {
   readonly travelList: ITravelInfo[]
-  readonly searchPrice: string[]
-  readonly searchSpaceCategory: string
+  readonly searchCategory: {
+    priceRange: number[]
+    selectSpace: string[]
+  }
   readonly selectedtravelList: ITravelInfo | null
   readonly loading: boolean
   readonly error: string
@@ -13,8 +15,7 @@ interface TravelState {
 
 const initialState: TravelState = {
   travelList: [],
-  searchPrice: ['0', '3000'],
-  searchSpaceCategory: '전체',
+  searchCategory: { priceRange: [0, 30000], selectSpace: [] },
   selectedtravelList: null,
   loading: false,
   error: '',
@@ -33,11 +34,14 @@ const travelSlice = createSlice({
       )
       state.selectedtravelList = selectedList
     },
-    setSearchPrice: (state, action: PayloadAction<string[]>) => {
-      state.searchPrice = action.payload
-    },
-    setSearchSpaceCategory: (state, action: PayloadAction<string>) => {
-      state.searchSpaceCategory = action.payload
+    setSearchCategory: (
+      state,
+      action: PayloadAction<{
+        priceRange: number[]
+        selectSpace: string[]
+      }>
+    ) => {
+      state.searchCategory = action.payload
     },
     initTravel: state => {
       state.travelList = []
@@ -56,6 +60,18 @@ export const searchTravelSpaceLists = createSelector(
     return new Array(...new Set(spaceList))
   }
 )
+export const searchedTripLists = createSelector([selectCartReducer], travel => {
+  const { searchCategory, travelList } = travel
+  const { priceRange, selectSpace } = searchCategory
+  const spacesortedTripList = travelList.filter(trip => {
+    return selectSpace.length ? selectSpace.includes(trip.spaceCategory) : trip
+  })
 
-export const { setTravelLists, getTravelList } = travelSlice.actions
+  return spacesortedTripList.filter(
+    list => list.price >= priceRange[0] && list.price <= priceRange[1]
+  )
+})
+
+export const { setTravelLists, getTravelList, setSearchCategory } =
+  travelSlice.actions
 export default travelSlice.reducer
