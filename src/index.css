@@ -55,6 +55,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* 커스텀 스타일 */
+.button__active {
+  background-color: #747bff !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
