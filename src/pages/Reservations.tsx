@@ -7,7 +7,7 @@ import { remove, patch } from '../store/slice/reservationSlice'
 function Reservation() {
   const dispatch = useDispatch()
   const todolist = useSelector((state: RootState) => state.reservations)
-  const [todoLists, setTodlLists] = useState(todolist)
+  // const [todoLists, setTodlLists] = useState(todolist)
   const [pay, setPay] = useState(0)
   const [amountOne, setAmountOne] = useState(0)
 
@@ -21,14 +21,14 @@ function Reservation() {
   }
 
   useEffect(() => {
-    const A = todoLists.map(El => El.price * El.amount)
+    const A = todolist.map(El => El.price * El.amount)
     setPay(A.reduce((acc, cur) => acc + cur, 0))
-  }, [todoLists, dispatch])
+  }, [todolist, dispatch])
 
   return (
     <div>
       <div>
-        {todoLists.map(el => (
+        {todolist.map(el => (
           <div key={el.id}>
             <span>{el.text}</span>
             <span>{el.price}</span>
@@ -42,10 +42,11 @@ function Reservation() {
             <span>{amountOne}</span>
             <button
               type='button'
-              onClick={() => dispatch(patch(el.amount - 1))}
+              onClick={() => payHandler(el.id, el.amount - 1)}
             >
               -
             </button>
+            {el.amount}
             <button type='button' onClick={() => dispatch(remove(el.id))}>
               삭제
             </button>
