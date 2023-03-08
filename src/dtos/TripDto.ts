@@ -8,3 +8,8 @@ export interface TripDto {
   maximumPurchases: number
   registrationDate: string
 }
+
+export interface ReservationDto {
+  idx: number
+  count: number
+}

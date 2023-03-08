@@ -1,7 +1,7 @@
 import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
 import {
   Card,
-  CardHeader,
   CardBody,
   CardFooter,
   Heading,
@@ -10,32 +10,64 @@ import {
   Divider,
   ButtonGroup,
   Button,
+  GridItem,
 } from '@chakra-ui/react'
+import { openModal } from '../store/reducers/modal'
+import { addReservation } from '../store/reducers/reservation'
+import { RootState } from '../store/store'
 import { TripDto } from '../dtos/TripDto'
 
-function TripItem(props: { trip: TripDto }) {
-  const { trip } = props
+function TripItem(props: { idx: number }) {
+  const { idx } = props
+  const dispatch = useDispatch()
+  const trip: TripDto = useSelector(
+    (state: RootState) => state.trip.filteredTripItems[idx]
+  )
+
+  const reservation: any = () => {
+    dispatch(
+      addReservation({
+        idx: trip.idx,
+      })
+    )
+  }
+
+  const onOpenModal: any = (i: number) => {
+    dispatch(openModal(i))
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <Heading as='h1' size='md'>
-          {trip.idx}
-        </Heading>
-      </CardHeader>
-      <CardBody>
-        <Image src={trip.mainImage} />
-        <Heading size='md'>{trip.name}</Heading>
-        <Text>{trip.price}</Text>
-        <Text>{trip.spaceCategory}</Text>
-      </CardBody>
-      <Divider />
-      <CardFooter>
-        <ButtonGroup>
-          <Button>예약</Button>
-          <Button>상세 정보</Button>
-        </ButtonGroup>
-      </CardFooter>
-    </Card>
+    <GridItem w='100%'>
+      <Card>
+        <CardBody>
+          <Image src={trip.mainImage} />
+          <Heading size='md'>
+            {trip.idx}. {trip.name}
+          </Heading>
+          <Text>{trip.price}원</Text>
+          <Text>{trip.spaceCategory}</Text>
+        </CardBody>
+        <Divider />
+        <CardFooter>
+          <ButtonGroup>
+            <Button
+              onClick={() => {
+                reservation()
+              }}
+            >
+              예약
+            </Button>
+            <Button
+              onClick={() => {
+                onOpenModal(idx)
+              }}
+            >
+              상세 정보
+            </Button>
+          </ButtonGroup>
+        </CardFooter>
+      </Card>
+    </GridItem>
   )
 }
 
