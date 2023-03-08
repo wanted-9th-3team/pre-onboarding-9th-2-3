@@ -1,17 +1,29 @@
 import { useState } from 'react'
 import Mock_Data from '../data/mock_data.json'
-import Modal from '../Modal'
+// import FilteredCatagory from '../component/Filter'
+import Modal from '../component/Modal'
 
 const catagory = [
   {
     id: 0,
-    price: ['All', '10000', '20000', '30000'],
+    price: ['10000', '20000', '30000'],
   },
   {
     id: 1,
-    space: ['All', '강원', '서울', '대구', '부산', '제주'],
+    space: ['강원', '서울', '대구', '부산', '제주'],
   },
 ]
+
+interface IMockData {
+  idx: number
+  name: string
+  mainImage: string
+  description: string
+  spaceCategory: string
+  price: number
+  maximumPurchases: number
+  registrationDate: Date
+}
 
 function Home() {
   const [itemList, setItemList] = useState(Mock_Data)
@@ -22,16 +34,12 @@ function Home() {
 
   const modalHandler = (num: number) => {
     setIsModal(!isModal)
-    console.log(isModal)
     setModalNumber(num)
   }
 
-  const BBB = itemList.filter(le => le.idx === modalNumber)
-  console.log(BBB)
-  const filterHandler = (price: string, space: string) => {
-    console.log(price)
-    console.log(space)
+  const filteredModal = itemList.filter(le => le.idx === modalNumber)
 
+  const filterHandler = (price: string, space: string) => {
     const filteredPrice = itemList.filter(list => {
       if (price === '') {
         return list
@@ -55,41 +63,39 @@ function Home() {
       }
       return na.spaceCategory === space
     })
-    console.log(filteredSpace)
+    // const FiteredList = FilteredCatagory(list, price, space)
     setItemList(filteredSpace)
   }
   const resetHandler = () => {
     if (itemList.length !== Mock_Data.length) {
       return setItemList(Mock_Data)
     }
-    const AAAA = setItemList.length !== Mock_Data.length
-    return AAAA ? setItemList(Mock_Data) : null
+    const resetData = setItemList.length !== Mock_Data.length
+    return resetData ? setItemList(Mock_Data) : null
   }
 
   return (
     <div>
-      <button type='button'>필터</button>
       <ul>
         {catagory.map(el => (
           <form key={el.id}>
             <ul>
-              목록:
-              {el.price?.map(els => (
+              {el.price?.map(price => (
                 <button
-                  key={els}
+                  key={price}
                   type='button'
-                  onClick={() => setSelecttPrice(els)}
+                  onClick={() => setSelecttPrice(price)}
                 >
-                  {els}
+                  {price}
                 </button>
               ))}
-              {el.space?.map(elK => (
+              {el.space?.map(space => (
                 <button
-                  key={elK}
+                  key={space}
                   type='button'
-                  onClick={() => setSelectSpace(elK)}
+                  onClick={() => setSelectSpace(space)}
                 >
-                  {elK}
+                  {space}
                 </button>
               ))}
             </ul>
@@ -121,7 +127,7 @@ function Home() {
           </li>
         ))}
       </ul>
-      {isModal === true ? <Modal modalData={BBB} /> : 'z'}
+      {isModal === true ? <Modal modalData={filteredModal} /> : null}
     </div>
   )
 }
