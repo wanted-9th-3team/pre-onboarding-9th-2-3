@@ -6,6 +6,8 @@ import './App.css'
 import getTravelInfo from './api/travel-api'
 import { useAppDispatch } from './store/store'
 import { setTravelLists } from './store/travel/travelSlice'
+import Reservations from './pages/Reservations'
+import Navigation from './pages/Navigation'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -21,8 +23,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navigate to='/main' />} />
-        <Route path='/main' element={<Main />} />
+        <Route path='/' element={<Navigation />}>
+          <Route path='/' element={<Navigate to='/main' />} />
+          <Route path='/main' element={<Main />} />
+          <Route path='/reservations' element={<Reservations />} />
+        </Route>
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
