@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectTravelLists } from '../../store/travel/travelSlice'
+import { searchedTripLists } from '../../store/travel/travelSlice'
 import TripCard from './TrripCard'
 
 function TripList() {
-  const travelLists = useSelector(selectTravelLists)
+  const travelLists = useSelector(searchedTripLists)
 
   return (
     <div
