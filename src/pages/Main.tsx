@@ -19,17 +19,7 @@ function Main() {
         }}
       >
         {travelLists.map(travel => {
-          return (
-            <TravelCard
-              key={travel.idx}
-              idx={travel.idx}
-              description={travel.description}
-              price={travel.price}
-              spaceCategory={travel.spaceCategory}
-              mainImage={travel.mainImage}
-              name={travel.name}
-            />
-          )
+          return <TravelCard key={travel.idx} travelInfo={travel} />
         })}
       </div>
     </div>
