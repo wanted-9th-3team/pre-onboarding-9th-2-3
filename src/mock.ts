@@ -8,6 +8,7 @@ export const mockData = [
     price: 30000,
     maximumPurchases: 5,
     registrationDate: '2023.01.01 15:07:00',
+    quantity: 1,
   },
   {
     idx: 2,
@@ -18,6 +19,7 @@ export const mockData = [
     price: 10000,
     maximumPurchases: 2,
     registrationDate: '2023.01.02 11:07:00',
+    quantity: 1,
   },
   {
     idx: 3,
@@ -28,6 +30,7 @@ export const mockData = [
     price: 15000,
     maximumPurchases: 5,
     registrationDate: '2023.01.03 15:07:00',
+    quantity: 1,
   },
   {
     idx: 4,
@@ -38,6 +41,7 @@ export const mockData = [
     price: 1000,
     maximumPurchases: 5,
     registrationDate: '2023.01.03 17:37:00',
+    quantity: 1,
   },
   {
     idx: 5,
@@ -48,6 +52,7 @@ export const mockData = [
     price: 15000,
     maximumPurchases: 5,
     registrationDate: '2023.01.03 15:42:00',
+    quantity: 1,
   },
   {
     idx: 6,
@@ -58,6 +63,7 @@ export const mockData = [
     price: 15000,
     maximumPurchases: 5,
     registrationDate: '2023.01.04 17:00:00',
+    quantity: 1,
   },
   {
     idx: 7,
@@ -68,6 +74,7 @@ export const mockData = [
     price: 25000,
     maximumPurchases: 2,
     registrationDate: '2023.01.05 14:07:00',
+    quantity: 1,
   },
   {
     idx: 8,
@@ -78,5 +85,6 @@ export const mockData = [
     price: 10000,
     maximumPurchases: 3,
     registrationDate: '2023.01.07 18:00:00',
+    quantity: 1,
   },
 ]

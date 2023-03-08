@@ -10,6 +10,7 @@ export interface Product {
   price: number
   maximumPurchases: number
   registrationDate: string
+  quantity: number
 }
 
 export interface CommonState {

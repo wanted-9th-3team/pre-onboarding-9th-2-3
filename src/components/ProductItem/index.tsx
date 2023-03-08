@@ -3,11 +3,21 @@ import {
   Box,
   Image,
   Badge,
+  Text,
   useColorModeValue,
   useDisclosure,
+  Button,
+  useToast,
 } from '@chakra-ui/react'
 import ProductDetail from '../ProductDetail'
 import { dateConverter } from '../../utils/dateConverter'
+import React from 'react'
+import {
+  setDeleteReserveItem,
+  setReserveItemDecreasePrice,
+  setReserveItemIncreasePrice,
+} from '../../store/slices/reserveSlice'
+import { useAppDispatch } from '../../store/config'
 
 interface IProductItemProps {
   idx: number
@@ -18,10 +28,43 @@ interface IProductItemProps {
   price: number
   maximumPurchases: number
   registrationDate: string
+  isCart: boolean
+  quantity: number
 }
 
 function ProductItem(product: IProductItemProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const dispatch = useAppDispatch()
+  const toast = useToast()
+
+  const increase = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (product.quantity > product.maximumPurchases) {
+      toast({
+        title: '최대 구매 횟수를 초과하셨습니다.',
+        description: product.name,
+        status: 'warning',
+        position: 'top',
+        isClosable: true,
+      })
+      return
+    }
+    dispatch(setReserveItemIncreasePrice(product.idx))
+  }
+
+  const decrease = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    e.stopPropagation()
+    if (product.quantity - 1 === 0) {
+      return
+    }
+    dispatch(setReserveItemDecreasePrice(product.idx))
+  }
+
+  const deleteOne = () => {
+    dispatch(setDeleteReserveItem(product.idx))
+  }
 
   return (
     <>
@@ -76,6 +119,58 @@ function ProductItem(product: IProductItemProps) {
                 {product.price}
               </Box>
             </Flex>
+            {product.isCart && (
+              <Flex justify='center' align='center'>
+                <Button
+                  w='container.sm'
+                  mr='2'
+                  bg={useColorModeValue('#151f21', 'gray.900')}
+                  color={'white'}
+                  rounded={'md'}
+                  disabled={product.quantity === 1}
+                  onClick={e => {
+                    decrease(e)
+                  }}
+                >
+                  -
+                </Button>
+
+                <Text fontSize='3xl' m='2'>
+                  {product.quantity}
+                </Text>
+
+                <Button
+                  w='container.sm'
+                  mr='2'
+                  bg={useColorModeValue('#151f21', 'gray.900')}
+                  color={'white'}
+                  rounded={'md'}
+                  onClick={e => {
+                    increase(e)
+                  }}
+                  m='2'
+                >
+                  +
+                </Button>
+
+                <Button
+                  w='full'
+                  bg='red.500'
+                  color='white'
+                  _hover={{
+                    color: 'red',
+                    bg: 'white',
+                    border: '1px solid red',
+                  }}
+                  m='2'
+                  onClick={() => {
+                    deleteOne()
+                  }}
+                >
+                  삭제
+                </Button>
+              </Flex>
+            )}
           </Box>
         </Box>
       </Flex>

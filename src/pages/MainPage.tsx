@@ -184,10 +184,12 @@ function MainPage() {
                   spaceCategory={product.spaceCategory}
                   maximumPurchases={product.maximumPurchases}
                   registrationDate={product.registrationDate}
+                  isCart={false}
+                  quantity={product.quantity}
                 />
               ))
             ) : (
-              <Info />
+              <Info info={'이런! 조건과 일치하는 상품이 없어요.'} />
             )}
           </SimpleGrid>
         )}

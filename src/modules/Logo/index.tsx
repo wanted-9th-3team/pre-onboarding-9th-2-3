@@ -1,7 +1,14 @@
+import { useNavigate } from 'react-router-dom'
+
 function Logo() {
+  const navigate = useNavigate()
+
   return (
     <img
-      style={{ borderRadius: '11px' }}
+      onClick={() => {
+        navigate('/')
+      }}
+      style={{ borderRadius: '11px', cursor: 'pointer' }}
       width='170'
       height='60'
       src='https://likealocal.co.kr/wp-content/uploads/2022/02/cropped-대지-1@4x.png'
