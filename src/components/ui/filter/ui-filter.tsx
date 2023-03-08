@@ -19,7 +19,7 @@ function FilterUI() {
     (state: RootState) => state.productsSlice.allProducts
   )
 
-  const [priceFilter, setPriceFilter] = useState<string[] | undefined>()
+  const [priceFilter, setPriceFilter] = useState<string[]>()
   const [spaceFilter, setSpaceFilter] = useState<string[]>([])
   const dispatch = useDispatch()
 
@@ -38,7 +38,11 @@ function FilterUI() {
     }
   }
 
-  const deleteDuplicationSpace = [...deleteDuplicationSpaceHandler()]
+  const resetFilterHandler = () => {
+    dispatch(filterActions.resetFilter())
+    setPriceFilter([])
+    setSpaceFilter([])
+  }
 
   const sumbitHandler = () => {
     const filterData: TypeFilter = {
@@ -48,6 +52,8 @@ function FilterUI() {
     }
     dispatch(filterActions.insertFilter(filterData))
   }
+
+  const deleteDuplicationSpace = [...deleteDuplicationSpaceHandler()]
 
   return (
     <Box className='filter'>
@@ -91,7 +97,8 @@ function FilterUI() {
               key={item}
               onClick={() => spaceFilterHandler(item)}
               className={
-                spaceFilter.find(it => it === item) && 'button__active'
+                spaceFilter.find(spaceName => spaceName === item) &&
+                'button__active'
               }
             >
               {item}
@@ -100,7 +107,7 @@ function FilterUI() {
         </ButtonGroup>
       </Box>
 
-      <Box className='filter__buttons' m={5}>
+      <ButtonGroup className='filter__buttons' m={5} spacing={3}>
         <Button
           type='button'
           size='md'
@@ -109,7 +116,15 @@ function FilterUI() {
         >
           적용
         </Button>
-      </Box>
+        <Button
+          type='button'
+          size='md'
+          colorScheme='pink'
+          onClick={resetFilterHandler}
+        >
+          초기화
+        </Button>
+      </ButtonGroup>
     </Box>
   )
 }
