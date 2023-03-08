@@ -7,12 +7,10 @@ export type TCartItem = ITravelInfo & {
 }
 
 interface CartState {
-  readonly isCartOpen: boolean
   readonly cartItems: TCartItem[]
 }
 
 const initialState: CartState = {
-  isCartOpen: false,
   cartItems: [],
 }
 
@@ -74,7 +72,6 @@ const cartSlice = createSlice({
     },
     initCartItem: state => {
       state.cartItems = []
-      state.isCartOpen = false
     },
   },
 })
@@ -85,10 +82,7 @@ export const selectCartItems = createSelector(
   [selectCartReducer],
   cart => cart.cartItems
 )
-export const selectIsCartOpen = createSelector(
-  [selectCartReducer],
-  cart => cart.isCartOpen
-)
+
 export const selectCartTotal = createSelector([selectCartItems], cartItems =>
   cartItems.reduce(
     (total, cartItem) => total + cartItem.quantity * cartItem.price,
