@@ -1,15 +1,28 @@
-import { Box } from '@chakra-ui/react'
-import { useDispatch } from 'react-redux'
+import { Box, Button, Text } from '@chakra-ui/react'
+import { useDispatch, useSelector } from 'react-redux'
 import { modalActions } from '../../../store/modal-slice'
 import { TypeProduct } from '../../../type'
+import { reservationActions } from '../../../store/reservation-slice'
+import { RootState } from '../../../store'
 
 function CardProduct(props: { product: TypeProduct }) {
   const { product } = props
+  const reservationInfos = useSelector(
+    (state: RootState) => state.reservationSlice.reservationInfos
+  )
 
   const dispatch = useDispatch()
 
   const setModal = () => {
     dispatch(modalActions.insertModal(product))
+  }
+
+  const insertReservation = () => {
+    const isExist = reservationInfos.find(item => item.idx === product.idx)
+
+    if (!isExist) {
+      dispatch(reservationActions.insertReservation(product))
+    }
   }
 
   return (
@@ -26,13 +39,17 @@ function CardProduct(props: { product: TypeProduct }) {
       onClick={setModal}
     >
       <Box backgroundColor='beige' width='100%'>
-        <p> {product.idx}</p>
-        <h2> {product.name}</h2>
-        <p>{product.price}</p>
-        <p>{product.spaceCategory}</p>
-        <div>
-          <button type='button'> 예약</button>
-        </div>
+        <Text> {product.idx}</Text>
+        <Text fontSize='xl' as='b'>
+          {product.name}
+        </Text>
+        <Text>{product.price}</Text>
+        <Text>{product.spaceCategory}</Text>
+        <Box>
+          <Button type='button' onClick={insertReservation}>
+            예약
+          </Button>
+        </Box>
       </Box>
     </Box>
   )
