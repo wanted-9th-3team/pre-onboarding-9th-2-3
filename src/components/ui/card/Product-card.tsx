@@ -1,14 +1,12 @@
 import { Box, Button, Text } from '@chakra-ui/react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { modalActions } from '../../../store/modal-slice'
 import { TypeProduct } from '../../../type'
-import { reservationActions } from '../../../store/reservation-slice'
-import { RootState } from '../../../store'
 
 function CardProduct(props: { product: TypeProduct }) {
   const { product } = props
-  const reservationInfos = useSelector(
-    (state: RootState) => state.reservationSlice.reservationInfos
+  const reservationInfoInStorage: TypeProduct[] = JSON.parse(
+    localStorage.getItem('reservations')!
   )
 
   const dispatch = useDispatch()
@@ -18,10 +16,15 @@ function CardProduct(props: { product: TypeProduct }) {
   }
 
   const insertReservation = () => {
-    const isExist = reservationInfos.find(item => item.idx === product.idx)
+    const isExist = reservationInfoInStorage.find(
+      item => item.idx === product.idx
+    )
 
     if (!isExist) {
-      dispatch(reservationActions.insertReservation(product))
+      localStorage.setItem(
+        'reservations',
+        JSON.stringify([...reservationInfoInStorage, product])
+      )
     }
   }
 
