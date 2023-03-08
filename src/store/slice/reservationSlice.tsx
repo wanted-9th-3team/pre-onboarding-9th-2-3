@@ -11,7 +11,7 @@ interface IinitailState {
 let nextId = 0
 const initialState: any[] = []
 export const reservationsSlice = createSlice({
-  name: 'todos',
+  name: 'reservations',
   initialState,
   reducers: {
     add: (state, action) => {
