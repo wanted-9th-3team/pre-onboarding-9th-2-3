@@ -6,7 +6,7 @@ const initialState: { modalInfo: TypeProduct | null } = {
 }
 
 const modalSlice = createSlice({
-  name: 'products',
+  name: 'modal',
   initialState,
   reducers: {
     insertModal(state, action: PayloadAction<TypeProduct>) {

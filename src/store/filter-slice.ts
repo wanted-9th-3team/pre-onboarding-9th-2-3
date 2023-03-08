@@ -8,7 +8,7 @@ const initialState: {
 }
 
 const filterSlice = createSlice({
-  name: 'products',
+  name: 'filter',
   initialState,
   reducers: {
     insertFilter(state, action: PayloadAction<TypeFilter>) {
