@@ -16,8 +16,6 @@ import { add } from '../store/slice/reservationSlice'
 
 function ModalComponent({ modalData, isModal, closeModal }: any) {
   const [itemCount, setItemCount] = useState(0)
-  // const [openol, setOpenol] = useState(false)
-  // const modalopen = useSelector((state: RootState) => state.modalslcie)
 
   const dispatch = useDispatch()
   const {
@@ -49,27 +47,21 @@ function ModalComponent({ modalData, isModal, closeModal }: any) {
     }
   }
 
-  // const modalhanlder = () => {
-  //   setOpen(!open)
-  // }
-
   return (
     <div>
-      {/* <Button onClick={isModal}>Open Modal</Button> */}
       <Modal blockScrollOnMount={false} isOpen={isModal} onClose={closeModal}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
+          <ModalHeader>상세 정보</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <div>{idx}</div>
-            <div>{name}</div>
-            <div>{name}</div>
-            <div>{description}</div>
-            <div>{spaceCategory}</div>
-            <div>{price}</div>
-            <div>{maximumPurchases}</div>
-            <div>{registrationDate}</div>
+            <div>번호 : {idx}</div>
+            <div>이름 : {name}</div>
+            <div>내용 : {description}</div>
+            <div>지역 : {spaceCategory}</div>
+            <div>가격 : {price}</div>
+            <div>최대수량 : {maximumPurchases}</div>
+            <div>시간 : {registrationDate}</div>
             <Button type='button' onClick={addCountHandler}>
               +
             </Button>
@@ -85,26 +77,8 @@ function ModalComponent({ modalData, isModal, closeModal }: any) {
             >
               -
             </Button>
-            {/* <Link to='/reservations'>
-              <Button
-                colorScheme='cyan'
-                size='md'
-                variant='solid'
-                type='submit'
-                onClick={() => dispatch(add(actiondata))}
-              >
-                장바구니 담기
-              </Button>
-            </Link>
-            <button type='button' onClick={removeCountHandler}>
-              뒤로가기
-            </button> */}
           </ModalBody>
           <ModalFooter>
-            {/* <Button colorScheme='blue' mr={3} onClick={closeModal}>
-              Close
-            </Button> */}
-            {/* <Button variant='ghost'>Secondary Action</Button> */}
             <Link to='/reservations'>
               <Button
                 colorScheme='cyan'
@@ -122,10 +96,6 @@ function ModalComponent({ modalData, isModal, closeModal }: any) {
           </ModalFooter>
         </ModalContent>
       </Modal>
-
-      <button type='button' onClick={removeCountHandler}>
-        뒤로가기
-      </button>
     </div>
   )
 }
