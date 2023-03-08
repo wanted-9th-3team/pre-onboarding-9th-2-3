@@ -22,7 +22,7 @@ function ReservationList() {
     setTimeout(() => {
       setIsLoading(false)
       toast({
-        title: '결재완료',
+        title: '결제완료',
         description: '구매하신 상품의 결재가 완료되었습니다.',
         status: 'success',
         duration: 2000,
@@ -63,7 +63,7 @@ function ReservationList() {
         justifyContent='space-between'
         flexDirection='row'
       >
-        <Text>총 결재 액: $ {totalCartPrice}</Text>
+        <Text>총 결제 금액: $ {totalCartPrice}</Text>
         <Button
           colorScheme='blue'
           variant='outline'
@@ -71,7 +71,7 @@ function ReservationList() {
           isDisabled={!cartItems.length}
           isLoading={isLoading}
         >
-          결재하기
+          결제하기
         </Button>
       </Stack>
     </>
