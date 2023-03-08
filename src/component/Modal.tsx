@@ -13,17 +13,11 @@ import {
   ModalCloseButton,
 } from '@chakra-ui/react'
 import { add } from '../store/slice/reservationSlice'
-import { open } from '../store/slice/ModalSlice'
-import { RootState } from '../store/store'
-
-interface Iidx {
-  idx: number
-}
 
 function ModalComponent({ modalData, isModal, closeModal }: any) {
   const [itemCount, setItemCount] = useState(0)
-  const [openol, setOpenol] = useState(false)
-  const modalopen = useSelector((state: RootState) => state.modalslcie)
+  // const [openol, setOpenol] = useState(false)
+  // const modalopen = useSelector((state: RootState) => state.modalslcie)
 
   const dispatch = useDispatch()
   const {
@@ -40,6 +34,7 @@ function ModalComponent({ modalData, isModal, closeModal }: any) {
     name: modalData[0].name,
     amount: itemCount,
     price: modalData[0].price,
+    mainImage,
   }
 
   const addCountHandler = () => {
@@ -90,7 +85,7 @@ function ModalComponent({ modalData, isModal, closeModal }: any) {
             >
               -
             </Button>
-            <Link to='/reservations'>
+            {/* <Link to='/reservations'>
               <Button
                 colorScheme='cyan'
                 size='md'
@@ -103,13 +98,27 @@ function ModalComponent({ modalData, isModal, closeModal }: any) {
             </Link>
             <button type='button' onClick={removeCountHandler}>
               뒤로가기
-            </button>
+            </button> */}
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme='blue' mr={3} onClick={closeModal}>
+            {/* <Button colorScheme='blue' mr={3} onClick={closeModal}>
               Close
+            </Button> */}
+            {/* <Button variant='ghost'>Secondary Action</Button> */}
+            <Link to='/reservations'>
+              <Button
+                colorScheme='cyan'
+                size='md'
+                variant='solid'
+                type='submit'
+                onClick={() => dispatch(add(actiondata))}
+              >
+                장바구니 담기
+              </Button>
+            </Link>
+            <Button variant='ghost' type='button' onClick={removeCountHandler}>
+              뒤로가기
             </Button>
-            <Button variant='ghost'>Secondary Action</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>
