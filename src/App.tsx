@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import Main from './pages/Main'
-import NotFound from './pages/NotFound'
-import './App.css'
-import getTravelInfo from './api/travel-api'
+import MainPage from './pages/MainPage'
+import NotFoundPage from './pages/NotFoundPage'
+import getTravelInfo from './api/travelApi'
 import { useAppDispatch } from './store/store'
 import { setTravelLists } from './store/travel/travelSlice'
-import Reservations from './pages/Reservations'
-import Navigation from './pages/Navigation'
+import ReservationPage from './pages/ReservationPage'
+import NavigationPage from './pages/NavigationPage'
+import './App.css'
 
 function App() {
   const dispatch = useAppDispatch()
@@ -23,12 +23,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Navigation />}>
+        <Route path='/' element={<NavigationPage />}>
           <Route path='/' element={<Navigate to='/main' />} />
-          <Route path='/main' element={<Main />} />
-          <Route path='/reservations' element={<Reservations />} />
+          <Route path='/main' element={<MainPage />} />
+          <Route path='/reservations' element={<ReservationPage />} />
         </Route>
-        <Route path='*' element={<NotFound />} />
+        <Route path='*' element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
