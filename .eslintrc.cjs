@@ -22,7 +22,5 @@ module.exports = {
   rules: {
     'react/react-in-jsx-scope': 0,
     'no-param-reassign': 'off',
-    '@typescript-eslint/no-unused-vars': 'off',
-    'import/no-cycle': 'off',
   },
 }
