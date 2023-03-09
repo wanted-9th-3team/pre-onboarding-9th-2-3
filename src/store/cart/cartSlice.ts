@@ -34,6 +34,25 @@ const addCartItem = (
   return [...cartItems, { ...productToAdd, quantity: 1 }]
 }
 
+const RemoveCartItem = (
+  cartItems: TCartItem[],
+  cartItemToRemove: ITravelInfo
+): TCartItem[] => {
+  const existingCartItem = cartItems.find(
+    item => item.idx === cartItemToRemove.idx
+  )
+
+  if (existingCartItem && existingCartItem.quantity === 1) {
+    return cartItems.filter(cartItem => cartItem.idx !== cartItemToRemove.idx)
+  }
+
+  return cartItems.map(cartItem =>
+    cartItem.idx === cartItemToRemove.idx
+      ? { ...cartItem, quantity: cartItem.quantity - 1 }
+      : cartItem
+  )
+}
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
