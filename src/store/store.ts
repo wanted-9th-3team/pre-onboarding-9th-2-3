@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import travelReducer from './travel/travelSlice'
+import tripReducer from './trip/tripSlice'
 import cartReducer from './cart/cartSlice'
 
 const rootReducer = combineReducers({
   cart: cartReducer,
-  travel: travelReducer,
+  trip: tripReducer,
 })
 
 export const store = configureStore({

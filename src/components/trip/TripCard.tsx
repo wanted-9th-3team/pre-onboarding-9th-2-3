@@ -11,11 +11,12 @@ import {
   useToast,
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
-import ITravelInfo from '../../api/TravelDTO'
-import { addCartList, selectCartItems } from '../../store/cart/cartSlice'
+import { ITravelInfo } from '../../Type'
+import { addCartList } from '../../store/cart/cartSlice'
 import { useAppDispatch } from '../../store/store'
-import { getTravelList } from '../../store/travel/travelSlice'
+import { getTravelList } from '../../store/trip/tripSlice'
 import CardModal from '../modal/CardModal'
+import { selectCartItems } from '../../store/cart/cartSelector'
 
 interface ITripCardProps {
   travelInfo: ITravelInfo
@@ -43,10 +44,17 @@ function TripCard({ travelInfo }: ITripCardProps) {
         isClosable: true,
         position: 'top',
       })
-      return
+    } else {
+      toast({
+        title: '예약 완료',
+        description: '장바구니에 추가했습니다.',
+        status: 'info',
+        duration: 500,
+        isClosable: true,
+        position: 'top',
+      })
+      dispatch(addCartList(travelInfo))
     }
-
-    dispatch(addCartList(travelInfo))
   }
 
   return (

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import ITravelInfo from './TravelDTO'
+import { ITravelInfo } from '../Type'
 
 const getTravelInfo = async () => {
   const response = await axios('src/data/mock_data.json')

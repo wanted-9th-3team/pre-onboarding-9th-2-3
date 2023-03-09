@@ -1,7 +1,6 @@
-import React from 'react'
 import { useSelector } from 'react-redux'
-import { searchedTripLists } from '../../store/travel/travelSlice'
-import TripCard from './TrripCard'
+import { searchedTripLists } from '../../store/trip/tripSelector'
+import TripCard from './TripCard'
 
 function TripList() {
   const travelLists = useSelector(searchedTripLists)

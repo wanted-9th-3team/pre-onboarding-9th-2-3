@@ -1,5 +1,5 @@
 import { Center, Stack } from '@chakra-ui/react'
-import SelectBox from '../components/SelectBox'
+import SelectBox from '../components/filter/SelectBox'
 import TripList from '../components/trip/TripList'
 
 function MainPage() {

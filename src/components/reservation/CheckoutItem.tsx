@@ -44,7 +44,7 @@ function CheckoutItem({ items }: CheckoutItemProps) {
       <CardBody>
         <Box mb='10px'>
           <Text fontSize='12px' fontWeight='bold'>
-            {name}
+            ({spaceCategory}) {name}
           </Text>
         </Box>
         <Box display='flex' justifyContent='space-around'>

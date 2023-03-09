@@ -2,11 +2,8 @@ import { Button, Stack, Text, useToast } from '@chakra-ui/react'
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import {
-  initCartItem,
-  selectCartItems,
-  selectCartTotal,
-} from '../../store/cart/cartSlice'
+import { selectCartItems, selectCartTotal } from '../../store/cart/cartSelector'
+import { initCartItem } from '../../store/cart/cartSlice'
 import { useAppDispatch } from '../../store/store'
 import CheckoutItem from './CheckoutItem'
 

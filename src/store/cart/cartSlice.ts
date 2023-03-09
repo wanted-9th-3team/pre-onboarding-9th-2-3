@@ -1,17 +1,18 @@
-import { createSelector, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../store'
-import ITravelInfo from '../../api/TravelDTO'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { ITravelInfo } from '../../Type'
 
 export type TCartItem = ITravelInfo & {
   quantity: number
 }
 
-interface CartState {
+export interface CartState {
   readonly cartItems: TCartItem[]
 }
 
+const existCart = localStorage.getItem('cart')
+
 const initialState: CartState = {
-  cartItems: [],
+  cartItems: existCart ? JSON.parse(existCart) : [],
 }
 
 const addCartItem = (
@@ -58,40 +59,28 @@ const cartSlice = createSlice({
   reducers: {
     addCartList: (state, action: PayloadAction<ITravelInfo>) => {
       const newCartItems = addCartItem(state.cartItems, action.payload)
+      localStorage.setItem('cart', JSON.stringify(newCartItems))
       state.cartItems = newCartItems
     },
     removeCartList: (state, action: PayloadAction<ITravelInfo>) => {
       const newCartItems = RemoveCartItem(state.cartItems, action.payload)
+      localStorage.setItem('cart', JSON.stringify(newCartItems))
+
       state.cartItems = newCartItems
     },
     clearCartItem: (state, action: PayloadAction<number>) => {
       const newCartItems = state.cartItems.filter(
         items => items.idx !== action.payload
       )
+      localStorage.setItem('cart', JSON.stringify(newCartItems))
       state.cartItems = newCartItems
     },
     initCartItem: state => {
       state.cartItems = []
+      localStorage.removeItem('cart')
     },
   },
 })
-
-const selectCartReducer = (state: RootState): CartState => state.cart
-
-export const selectCartItems = createSelector(
-  [selectCartReducer],
-  cart => cart.cartItems
-)
-
-export const selectCartTotal = createSelector([selectCartItems], cartItems =>
-  cartItems.reduce(
-    (total, cartItem) => total + cartItem.quantity * cartItem.price,
-    0
-  )
-)
-export const selectCartCount = createSelector([selectCartItems], cartItems =>
-  cartItems.reduce((total, cartItem) => total + cartItem.quantity, 0)
-)
 
 export const { initCartItem, addCartList, removeCartList, clearCartItem } =
   cartSlice.actions
