@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import {
   Grid,
   NumberInput,
@@ -44,8 +45,8 @@ function CustomNumberInput(props: {
 function CitySelect(props: { onChange: (e: any) => void }) {
   const { onChange } = props
   const options = city.map(item => (
-    <option value={item} key=''>
-      {item}
+    <option value={item.name} key={item.idx}>
+      {item.name}
     </option>
   ))
   return <Select onChange={onChange}>{options}</Select>
@@ -61,7 +62,7 @@ function Main() {
   ))
 
   const dispatch = useDispatch()
-
+  const navigate = useNavigate()
   const minPrice = useRef(0)
   const maxPrice = useRef(100000)
   const cityList = useRef('전체')
@@ -96,6 +97,13 @@ function Main() {
   return (
     <div>
       <Heading>상품 목록</Heading>
+      <Button
+        onClick={() => {
+          navigate('/reservations')
+        }}
+      >
+        장바구니
+      </Button>
       <Grid gap={6} templateColumns='repeat(4, 1fr)'>
         {trip}
       </Grid>
