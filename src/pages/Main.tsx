@@ -14,8 +14,9 @@ import {
   Center,
   Heading,
 } from '@chakra-ui/react'
-import { resetTrip, filterTrip } from '../store/reducers/trip'
-import { RootState } from '../store/store'
+import { filterTrip } from '../store/reducers/trip'
+import { getTrip } from '../store/reducers/trip'
+import { RootState, AppDispatch } from '../store/store'
 import TripItem from '../components/TripItem'
 import TripItemDetailModal from '../components/TripItemDetailModal'
 import city from '../data/city.json'
@@ -61,14 +62,14 @@ function Main() {
     <TripItem key={item.idx} idx={idx} />
   ))
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const navigate = useNavigate()
   const minPrice = useRef(0)
   const maxPrice = useRef(100000)
   const cityList = useRef('전체')
 
   useEffect(() => {
-    dispatch(resetTrip)
+    dispatch(getTrip())
   }, [dispatch])
 
   const setMinPrice = (e: any) => {
