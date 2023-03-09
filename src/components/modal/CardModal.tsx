@@ -28,7 +28,26 @@ function CardModal({ onClose, isOpen, idx }: CardModalProps) {
   const travelList = useSelector(
     (state: RootState) => state.trip.selectedtripList
   )
-
+  if (!travelList) {
+    return (
+      <Modal isOpen={isOpen} size='xl' onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalBody display='flex' flexDirection='row'>
+            <Stack
+              flexDirection='column'
+              justify='space-between'
+              alignItems='center'
+            >
+              <Container height='150px' width='300px'>
+                여행정보가 없습니다....
+              </Container>
+            </Stack>
+          </ModalBody>
+        </ModalContent>
+      </Modal>
+    )
+  }
 
   const { registrationDate } = travelList
   const convertDate = dateConvertor(registrationDate)
