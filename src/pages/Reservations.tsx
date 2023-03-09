@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { Heading } from '@chakra-ui/react'
+import { Grid } from '@chakra-ui/react'
 import { RootState } from '../store/store'
 import ReservationItem from '../components/ReservationItem'
+import NavHeader from '../components/NavHeader'
 
 function Reservations() {
   const reservationList = useSelector(
@@ -37,8 +38,10 @@ function Reservations() {
 
   return (
     <div>
-      <Heading>장바구니</Heading>
-      <div>{ReservationItems}</div>
+      <NavHeader />
+      <Grid gap={6} templateColumns='repeat(4, 1fr)' mt='5'>
+        {ReservationItems}
+      </Grid>
       <span>총 가격 : {getTotalPrice()}</span>
     </div>
   )

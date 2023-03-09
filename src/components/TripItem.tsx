@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   Card,
+  CardHeader,
   CardBody,
   CardFooter,
   Heading,
@@ -38,19 +39,27 @@ function TripItem(props: { idx: number }) {
 
   return (
     <GridItem w='100%'>
-      <Card>
-        <CardBody>
-          <Image src={trip.mainImage} />
-          <Heading size='md'>
-            {trip.idx}. {trip.name}
+      <Card p='3' minH='500'>
+        <CardHeader p='1'>
+          <Heading size='xs' colorScheme='gray' m='2'>
+            {trip.idx}.
+          </Heading>
+        </CardHeader>
+        <Divider />
+        <CardBody p='3'>
+          <Image src={trip.mainImage} mb='3' />
+          <Heading size='sm' minH='50'>
+            {trip.name}
           </Heading>
           <Text>{trip.price}원</Text>
           <Text>{trip.spaceCategory}</Text>
         </CardBody>
         <Divider />
         <CardFooter>
-          <ButtonGroup>
+          <ButtonGroup w='100%'>
             <Button
+              w='50%'
+              colorScheme='orange'
               onClick={() => {
                 reservation()
               }}
@@ -58,6 +67,8 @@ function TripItem(props: { idx: number }) {
               예약
             </Button>
             <Button
+              w='50%'
+              colorScheme='facebook'
               onClick={() => {
                 onOpenModal(idx)
               }}

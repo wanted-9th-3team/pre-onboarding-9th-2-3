@@ -8,6 +8,8 @@ import {
   ModalContent,
   ModalHeader,
   ModalBody,
+  Heading,
+  Divider,
 } from '@chakra-ui/react'
 import { closeModal } from '../store/reducers/modal'
 import { RootState } from '../store/store'
@@ -36,10 +38,13 @@ function TripItemDetailModal() {
         ) : (
           <>
             <ModalHeader>
-              {trip[clickedIdx].idx}. {trip[clickedIdx].name}
+              <Heading size='md'>
+                {trip[clickedIdx].idx}. {trip[clickedIdx].name}
+              </Heading>
             </ModalHeader>
-            <ModalBody>
-              <Image src={trip[clickedIdx].mainImage} />
+            <Divider />
+            <ModalBody p='5' w='100%'>
+              <Image src={trip[clickedIdx].mainImage} w='100%' />
               <Text>{trip[clickedIdx].description}</Text>
               <Text>{trip[clickedIdx].spaceCategory}</Text>
               <Text>{trip[clickedIdx].price}</Text>

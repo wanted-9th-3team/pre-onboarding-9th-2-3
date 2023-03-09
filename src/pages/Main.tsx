@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
 import {
   Grid,
   NumberInput,
@@ -13,11 +12,13 @@ import {
   Button,
   Center,
   Heading,
+  Badge,
 } from '@chakra-ui/react'
 import { filterTrip, getTrip } from '../store/reducers/trip'
 import { RootState, AppDispatch } from '../store/store'
 import TripItem from '../components/TripItem'
 import TripItemDetailModal from '../components/TripItemDetailModal'
+import NavHeader from '../components/NavHeader'
 import city from '../data/city.json'
 
 function CustomNumberInput(props: {
@@ -62,7 +63,7 @@ function Main() {
   ))
 
   const dispatch = useDispatch<AppDispatch>()
-  const navigate = useNavigate()
+
   const minPrice = useRef(0)
   const maxPrice = useRef(100000)
   const cityList = useRef('전체')
@@ -96,25 +97,20 @@ function Main() {
 
   return (
     <div>
-      <Heading>상품 목록</Heading>
-      <Button
-        onClick={() => {
-          navigate('/reservations')
-        }}
-      >
-        장바구니
-      </Button>
-      <Grid gap={6} templateColumns='repeat(4, 1fr)'>
-        {trip}
-      </Grid>
-      <Center>
+      <NavHeader />
+      <Center m='5'>
         <Stack shouldWrapChildren direction='row'>
           <CustomNumberInput defaultValue={0} onChange={setMinPrice} />
           <CustomNumberInput defaultValue={100000} onChange={setMaxPrice} />
           <CitySelect onChange={setCity} />
-          <Button onClick={searchTrip}>검색</Button>
+          <Button onClick={searchTrip} colorScheme='purple'>
+            검색
+          </Button>
         </Stack>
       </Center>
+      <Grid gap={6} templateColumns='repeat(4, 1fr)' alignContent='center'>
+        {trip}
+      </Grid>
       <TripItemDetailModal />
     </div>
   )

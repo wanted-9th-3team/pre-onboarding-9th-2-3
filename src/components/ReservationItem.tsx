@@ -6,6 +6,7 @@ import {
   Heading,
   Text,
   Divider,
+  CardHeader,
   CardFooter,
   GridItem,
   NumberInput,
@@ -35,10 +36,16 @@ function ReservationItem(props: IReservationItemProps) {
   return (
     <GridItem w='100%'>
       <Card>
-        <CardBody>
-          <Image src={tripItem.mainImage} />
-          <Heading size='md'>
-            {tripItem.idx}. {tripItem.name}
+        <CardHeader p='1'>
+          <Heading size='xs' colorScheme='gray'>
+            {tripItem.idx}.
+          </Heading>
+        </CardHeader>
+        <Divider />
+        <CardBody p='3' minH='300'>
+          <Image src={tripItem.mainImage} mb='3' />
+          <Heading size='sm' minH='50'>
+            {tripItem.name}
           </Heading>
           <Text>{tripItem.price}원</Text>
           <Text>{tripItem.spaceCategory}</Text>
