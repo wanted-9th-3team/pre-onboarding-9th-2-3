@@ -1,6 +1,39 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ITravelInfo } from '../../Type'
 
+export type TCartItem = ITravelInfo & {
+  quantity: number
+}
+
+export interface ICartState {
+  readonly cartItems: TCartItem[]
+}
+
+const existCart = localStorage.getItem('cart')
+
+const initialState: ICartState = {
+  cartItems: existCart ? JSON.parse(existCart) : [],
+}
+
+const addCartItem = (
+  cartItems: TCartItem[],
+  productToAdd: ITravelInfo
+): TCartItem[] => {
+  const existingCartItem = cartItems.find(
+    cartItem => cartItem.idx === productToAdd.idx
+  )
+
+  if (existingCartItem) {
+    return cartItems.map(cartItem =>
+      cartItem.idx === productToAdd.idx
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : cartItem
+    )
+  }
+
+  return [...cartItems, { ...productToAdd, quantity: 1 }]
+}
+
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
