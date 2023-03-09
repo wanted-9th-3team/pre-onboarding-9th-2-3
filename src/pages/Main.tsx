@@ -14,8 +14,7 @@ import {
   Center,
   Heading,
 } from '@chakra-ui/react'
-import { filterTrip } from '../store/reducers/trip'
-import { getTrip } from '../store/reducers/trip'
+import { filterTrip, getTrip } from '../store/reducers/trip'
 import { RootState, AppDispatch } from '../store/store'
 import TripItem from '../components/TripItem'
 import TripItemDetailModal from '../components/TripItemDetailModal'

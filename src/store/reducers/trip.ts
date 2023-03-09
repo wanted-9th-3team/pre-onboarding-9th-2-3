@@ -1,24 +1,21 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import TripData from '../../data/mock_data.json'
-import { loadTrip } from '../../apis/tripApi'
+import tripApi from '../../apis/tripApi'
 import { TripDto } from '../../dtos/TripDto'
 
-export const getTrip = createAsyncThunk(
-  'trip/getTripStatus',
-  async()=>{
-    const response : any = await loadTrip()
-    return response.data
-  }
-)
+export const getTrip = createAsyncThunk('trip/getTripStatus', async () => {
+  const response: any = await tripApi()
+  return response.data
+})
 
 interface TripState {
-  tripItems: TripDto[],
-  filteredTripItems:TripDto [],
+  tripItems: TripDto[]
+  filteredTripItems: TripDto[]
 }
 
-const initialState : TripState = {
+const initialState: TripState = {
   tripItems: [],
-  filteredTripItems: []
+  filteredTripItems: [],
 }
 export const tripSlice = createSlice({
   name: 'trip',
@@ -42,13 +39,12 @@ export const tripSlice = createSlice({
       })
     },
   },
-  extraReducers: (builder) =>{
-    builder.addCase(getTrip.fulfilled, (state, action)=>{
+  extraReducers: builder => {
+    builder.addCase(getTrip.fulfilled, (state, action) => {
       state.tripItems = action.payload
       state.filteredTripItems = action.payload
     })
-  }
-  
+  },
 })
 
 export const { resetTrip, filterTrip } = tripSlice.actions
