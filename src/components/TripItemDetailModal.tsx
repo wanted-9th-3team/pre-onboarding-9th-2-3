@@ -7,9 +7,7 @@ import {
   ModalOverlay,
   ModalContent,
   ModalHeader,
-  ModalFooter,
   ModalBody,
-  ModalCloseButton,
 } from '@chakra-ui/react'
 import { closeModal } from '../store/reducers/modal'
 import { RootState } from '../store/store'

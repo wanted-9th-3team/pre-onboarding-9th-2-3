@@ -53,6 +53,6 @@ export const reservationSlice = createSlice({
   },
 })
 
-export const { addReservation } = reservationSlice.actions
+export const { addReservation, changeCount } = reservationSlice.actions
 
 export default reservationSlice.reducer

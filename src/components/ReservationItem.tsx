@@ -1,26 +1,65 @@
 import React from 'react'
-import { Card, GridItem } from '@chakra-ui/react'
+import {
+  Card,
+  CardBody,
+  Image,
+  Heading,
+  Text,
+  Divider,
+  CardFooter,
+  GridItem,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+} from '@chakra-ui/react'
+import { useDispatch } from 'react-redux'
+import { changeCount } from '../store/reducers/reservation'
+import { TripDto } from '../dtos/TripDto'
 
-function ReservationItem() {
+export interface IReservationItemProps {
+  tripItem: TripDto
+  count: number
+}
+
+function ReservationItem(props: IReservationItemProps) {
+  const { tripItem, count } = props
+  const dispatch = useDispatch()
+  const changeOtherCount = (e: string) => {
+    const newCount = parseInt(e, 10)
+    if (newCount <= tripItem.maximumPurchases) {
+      dispatch(changeCount({ idx: tripItem.idx, count: newCount }))
+    }
+  }
   return (
     <GridItem w='100%'>
       <Card>
-        hello
-        {/* <CardBody>
-          <Image src={trip.mainImage} />
+        <CardBody>
+          <Image src={tripItem.mainImage} />
           <Heading size='md'>
-            {trip.idx}. {trip.name}
+            {tripItem.idx}. {tripItem.name}
           </Heading>
-          <Text>{trip.price}원</Text>
-          <Text>{trip.spaceCategory}</Text>
+          <Text>{tripItem.price}원</Text>
+          <Text>{tripItem.spaceCategory}</Text>
         </CardBody>
         <Divider />
         <CardFooter>
-          <ButtonGroup>
-            <Button onClick={()=>{reservation()}}>예약</Button>
-            <Button onClick={()=>{onOpenModal(props.idx)}}>상세 정보</Button>
-          </ButtonGroup>
-        </CardFooter> */}
+          <NumberInput
+            defaultValue={count}
+            min={0}
+            max={tripItem.maximumPurchases}
+            onChange={e => {
+              changeOtherCount(e)
+            }}
+          >
+            <NumberInputField />
+            <NumberInputStepper>
+              <NumberIncrementStepper />
+              <NumberDecrementStepper />
+            </NumberInputStepper>
+          </NumberInput>
+        </CardFooter>
       </Card>
     </GridItem>
   )
