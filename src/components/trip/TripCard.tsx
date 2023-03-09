@@ -13,7 +13,10 @@ import {
 import { useSelector } from 'react-redux'
 import { ITripInfo } from '../../Type'
 import { addCartList } from '../../store/cart/cartSlice'
+import { setSelectedtripList } from '../../store/trip/tripSlice'
 import { useAppDispatch } from '../../store/store'
+// import CardModal from '../modal/CardModal'
+import { selectCartItems } from '../../store/cart/cartSelector'
 
 interface ITripCardProps {
   travelInfo: ITripInfo
@@ -25,6 +28,11 @@ function TripCard({ travelInfo }: ITripCardProps) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast()
   const dispatch = useAppDispatch()
+
+  const openModalHandler = () => {
+    dispatch(setSelectedtripList(idx))
+    onOpen()
+  }
 
   const addToCartHandler = () => {
     if (selectedCartItem.find(item => item.idx === idx)) {
