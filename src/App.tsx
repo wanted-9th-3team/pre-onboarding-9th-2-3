@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Home from './pages/Home'
+import MainPage from './pages/MainPage'
 import NotFound from './pages/NotFound'
 import { useAppDispatch } from './store/store'
 import { getTrip } from './store/trip/tripSlice'
@@ -16,7 +16,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} />
+        <Route path='/' element={<MainPage />} />
         <Route path='*' element={<NotFound />} />
       </Routes>
     </BrowserRouter>
