@@ -8,3 +8,8 @@ export interface ITripInfo {
   maximumPurchases: number
   registrationDate: string
 }
+
+export interface ISearchCategory {
+  priceRange: number[]
+  selectSpace: string[]
+}

@@ -1,9 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ITripInfo } from '../../Type'
+import { ISearchCategory, ITripInfo } from '../../Type'
 import getTravelInfo from '../../api/travelApi'
 
 export interface ITravelState {
   readonly tripList: ITripInfo[]
+  readonly searchCategory: ISearchCategory
   readonly priceRange: number[]
   readonly selectedtripList: ITripInfo | null
 }
@@ -11,6 +12,7 @@ export interface ITravelState {
 const initialState: ITravelState = {
   tripList: [],
   priceRange: [],
+  searchCategory: { priceRange: [], selectSpace: [] },
   selectedtripList: null,
 }
 
@@ -30,6 +32,9 @@ const tripSlice = createSlice({
       )
       state.selectedtripList = selectedList
     },
+    setSearchCategory: (state, action: PayloadAction<ISearchCategory>) => {
+      state.searchCategory = action.payload
+    },
     initTrip: state => {
       state.tripList = []
     },
@@ -47,6 +52,6 @@ const tripSlice = createSlice({
   },
 })
 
-export const { setSelectedtripList } = tripSlice.actions
+export const { setSelectedtripList, setSearchCategory } = tripSlice.actions
 
 export default tripSlice.reducer
