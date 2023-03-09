@@ -33,6 +33,29 @@ function TripCard({ travelInfo }: ITripCardProps) {
     dispatch(setSelectedtripList(idx))
     onOpen()
   }
+
+  // const addToCartHandler = () => {
+  //   if (selectedCartItem.find(item => item.idx === idx)) {
+  //     toast({
+  //       title: '오류',
+  //       description: '이미 장바구니에 존재합니다.',
+  //       status: 'warning',
+  //       duration: 2000,
+  //       isClosable: true,
+  //       position: 'top',
+  //     })
+  //   } else {
+  //     toast({
+  //       title: '예약 완료',
+  //       description: '장바구니에 추가했습니다.',
+  //       status: 'info',
+  //       duration: 500,
+  //       isClosable: true,
+  //       position: 'top',
+  //     })
+  //     dispatch(addCartList(travelInfo))
+  //   }
+  // }
   return <div />
 }
 
