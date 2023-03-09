@@ -12,11 +12,11 @@ import {
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { ITripInfo } from '../../Type'
-import { addCartList } from '../../store/cart/cartSlice'
+// import { addCartList } from '../../store/cart/cartSlice'
 import { setSelectedtripList } from '../../store/trip/tripSlice'
 import { useAppDispatch } from '../../store/store'
 // import CardModal from '../modal/CardModal'
-import { selectCartItems } from '../../store/cart/cartSelector'
+// import { selectCartItems } from '../../store/cart/cartSelector'
 
 interface ITripCardProps {
   travelInfo: ITripInfo
@@ -24,7 +24,7 @@ interface ITripCardProps {
 
 function TripCard({ travelInfo }: ITripCardProps) {
   const { idx, name, mainImage, price, spaceCategory } = travelInfo
-  const selectedCartItem = useSelector(selectCartItems)
+  // const selectedCartItem = useSelector(selectCartItems)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast()
   const dispatch = useAppDispatch()
@@ -34,28 +34,28 @@ function TripCard({ travelInfo }: ITripCardProps) {
     onOpen()
   }
 
-  const addToCartHandler = () => {
-    if (selectedCartItem.find(item => item.idx === idx)) {
-      toast({
-        title: '오류',
-        description: '이미 장바구니에 존재합니다.',
-        status: 'warning',
-        duration: 2000,
-        isClosable: true,
-        position: 'top',
-      })
-    } else {
-      toast({
-        title: '예약 완료',
-        description: '장바구니에 추가했습니다.',
-        status: 'info',
-        duration: 500,
-        isClosable: true,
-        position: 'top',
-      })
-      dispatch(addCartList(travelInfo))
-    }
-  }
+  // const addToCartHandler = () => {
+  //   if (selectedCartItem.find(item => item.idx === idx)) {
+  //     toast({
+  //       title: '오류',
+  //       description: '이미 장바구니에 존재합니다.',
+  //       status: 'warning',
+  //       duration: 2000,
+  //       isClosable: true,
+  //       position: 'top',
+  //     })
+  //   } else {
+  //     toast({
+  //       title: '예약 완료',
+  //       description: '장바구니에 추가했습니다.',
+  //       status: 'info',
+  //       duration: 500,
+  //       isClosable: true,
+  //       position: 'top',
+  //     })
+  //     dispatch(addCartList(travelInfo))
+  //   }
+  // }
 
   return (
     <>
@@ -94,7 +94,7 @@ function TripCard({ travelInfo }: ITripCardProps) {
             <Button
               variant='solid'
               colorScheme='blue'
-              onClick={addToCartHandler}
+              // onClick={addToCartHandler}
             >
               예약하기
             </Button>
