@@ -1,6 +1,6 @@
 import { Center, Stack } from '@chakra-ui/react'
-// import SelectBox from '../components/filter/SelectBox'
-// import TripList from '../components/trip/TripList'
+import SelectBox from '../components/filter/SelectBox'
+import TripList from '../components/trip/TripList'
 
 function MainPage() {
   return (
@@ -8,8 +8,8 @@ function MainPage() {
       <Center h='100px'>
         <h1 style={{ fontSize: '30px', fontWeight: 'bold' }}>여행 상품 정보</h1>
       </Center>
-      {/* <SelectBox />
-      <TripList /> */}
+      <SelectBox />
+      <TripList />
     </Stack>
   )
 }
