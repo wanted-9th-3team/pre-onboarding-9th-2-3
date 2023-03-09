@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
 import { Box } from '@chakra-ui/react'
 import { RootState } from '../../store'
-import CardProduct from '../ui/card/Product-card'
+import CardProduct from '../ui/card/ProductCard'
 import ModalProduct from '../ui/modal/Product-modal'
 import FilterUI from '../ui/filter/ui-filter'
-import { filterBySpace, filterByPrice } from '../../util/products-filtering'
+import { filterBySpace, filterByPrice } from '../../util/productsFiltering'
 
 function Information() {
   const productsInfo = useSelector(

@@ -1,8 +1,18 @@
 import { Box, Button, Text } from '@chakra-ui/react'
 import { TypeProduct } from '../../../type'
+import { useDispatch } from 'react-redux'
+import { reservationActions } from '../../../store/reservationSlice'
 
 function CardReservation(props: { product: TypeProduct }) {
   const { product } = props
+  const dispatch = useDispatch()
+
+  const increaseQunatity = () => {
+    dispatch(reservationActions.increase(product.idx))
+  }
+  const decreaseQunatity = () => {
+    dispatch(reservationActions.decrease(product.idx))
+  }
 
   const cancelReservationHandler = () => {
     const reservationInfoInStorage: TypeProduct[] = JSON.parse(
@@ -14,7 +24,7 @@ function CardReservation(props: { product: TypeProduct }) {
     )
 
     localStorage.setItem('reservations', JSON.stringify(filterReservationInfo))
-    location.reload()
+    window.location.reload()
   }
 
   return (
@@ -35,6 +45,9 @@ function CardReservation(props: { product: TypeProduct }) {
           {product.name}
         </Text>
         <Text>{product.price}</Text>
+        <Text>{product.quantity}</Text>
+        <Button onClick={increaseQunatity}> 추가</Button>
+        <Button onClick={decreaseQunatity}> 제거</Button>
         <Text>{product.spaceCategory}</Text>
         <Box>
           <Button type='button' onClick={cancelReservationHandler}>

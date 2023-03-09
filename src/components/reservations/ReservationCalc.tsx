@@ -13,7 +13,8 @@ function ReservationCalc() {
     setTotalPrice(
       reservationInfoInStorage.reduce((acc, cur) => acc + cur.price, 0)
     )
-  }, [])
+  }, [reservationInfoInStorage])
+
   return (
     <Box>
       <Text>총가격 : {totalPriace}</Text>

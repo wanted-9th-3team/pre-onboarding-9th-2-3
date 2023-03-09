@@ -1,26 +1,26 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
-import { Provider } from 'react-redux'
-import { store } from './store'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import './App.css'
-import Main from './pages/Main'
-import Reservations from './pages/Reservations'
-import NotFound from './pages/NotFound'
-import LayoutHeader from './components/ui/layout/layout-header'
+import MainPage from './pages/MainPage'
+import ReservationPage from './pages/ReservationPage'
+import NotFoundPage from './pages/NotFoundPage'
+
+import { useAppDispatch, handler as getProducts } from './store/productActions'
 
 function App() {
+  const disaptch = useAppDispatch()
+
+  useEffect(() => {
+    disaptch(getProducts())
+  }, [])
+
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <LayoutHeader>
-          <Routes>
-            <Route path='/' element={<Navigate to='/main' />} />
-            <Route path='/main' element={<Main />} />
-            <Route path='/reservations' element={<Reservations />} />
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </LayoutHeader>
-      </BrowserRouter>
-    </Provider>
+    <Routes>
+      <Route path='/' element={<Navigate to='/main' />} />
+      <Route path='/main' element={<MainPage />} />
+      <Route path='/reservations' element={<ReservationPage />} />
+      <Route path='*' element={<NotFoundPage />} />
+    </Routes>
   )
 }
 

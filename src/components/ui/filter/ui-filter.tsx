@@ -11,7 +11,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 import { RootState } from '../../../store'
-import { filterActions } from '../../../store/filter-slice'
+import { filterActions } from '../../../store/filterSlice'
 import { TypeFilter } from '../../../type'
 
 function FilterUI() {

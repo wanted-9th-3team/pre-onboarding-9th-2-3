@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
 import { TypeProduct } from '../../../type'
-import { modalActions } from '../../../store/modal-slice'
+import { modalActions } from '../../../store/modalSlice'
 
 function ModalProduct(props: { modalInfo: TypeProduct }) {
   const { modalInfo } = props

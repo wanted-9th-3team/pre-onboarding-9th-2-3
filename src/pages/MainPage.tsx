@@ -1,6 +1,6 @@
 import Information from '../components/main/Information'
 
-function Main() {
+function MainPage() {
   return (
     <div>
       <Information />
@@ -8,4 +8,4 @@ function Main() {
   )
 }
 
-export default Main
+export default MainPage

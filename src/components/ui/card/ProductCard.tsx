@@ -1,10 +1,11 @@
 import { Box, Button, Text } from '@chakra-ui/react'
 import { useDispatch } from 'react-redux'
-import { modalActions } from '../../../store/modal-slice'
+import { modalActions } from '../../../store/modalSlice'
 import { TypeProduct } from '../../../type'
 
 function CardProduct(props: { product: TypeProduct }) {
   const { product } = props
+
   const reservationInfoInStorage: TypeProduct[] = JSON.parse(
     localStorage.getItem('reservations')!
   )

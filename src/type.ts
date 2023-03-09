@@ -7,6 +7,7 @@ export interface TypeProduct {
   price: number
   maximumPurchases: number
   registrationDate: string
+  quantity?: number
 }
 
 export interface TypeFilter {

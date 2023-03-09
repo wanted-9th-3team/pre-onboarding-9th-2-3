@@ -1,13 +1,14 @@
 import { Box } from '@chakra-ui/react'
-import CardReservation from '../ui/card/Reservation-card'
-import { TypeProduct } from '../../type'
+import CardReservation from '../ui/card/ReservationCard'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
 
 function ReservationInfo() {
-  const reservationInfoInStorage: TypeProduct[] = JSON.parse(
-    localStorage.getItem('reservations')!
+  const reservationsData = useSelector(
+    (state: RootState) => state.reservationSlice.allReservations
   )
 
-  let reservationJSX = reservationInfoInStorage.map(item => (
+  const reservationJSX = reservationsData.map(item => (
     <CardReservation key={item.idx} product={item} />
   ))
 
