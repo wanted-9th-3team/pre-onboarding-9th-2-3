@@ -26,7 +26,7 @@ interface CardModalProps {
 
 function CardModal({ onClose, isOpen, idx }: CardModalProps) {
   const travelList = useSelector(
-    (state: RootState) => state.trip.selectedtravelList
+    (state: RootState) => state.trip.selectedtripList
   )
   if (!travelList) {
     return (

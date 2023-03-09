@@ -11,12 +11,16 @@ import {
 import { MouseEvent, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useAppDispatch } from '../../store/store'
-import { searchTravelSpaceLists } from '../../store/trip/tripSelector'
+import {
+  searchTravelSpaceLists,
+  selectPriceRange,
+} from '../../store/trip/tripSelector'
 import { setSearchCategory } from '../../store/trip/tripSlice'
 
 function SelectBox() {
   const dispatch = useAppDispatch()
   const tripSpaceList = useSelector(searchTravelSpaceLists)
+  const price = useSelector(selectPriceRange)
 
   const priceMinRef = useRef<HTMLDivElement | null>(null)
   const priceMaxRef = useRef<HTMLDivElement | null>(null)
@@ -52,28 +56,36 @@ function SelectBox() {
         검색
       </Button>
       <Stack w='100%' flexDirection='row' alignItems='center'>
-        <Text width='50px' mr='20px'>
+        <Text width='50px' mr='35px'>
           가격
         </Text>
         <RangeSlider
-          defaultValue={[0, 30000]}
+          defaultValue={[0, 1000000000]}
           min={0}
-          max={30000}
+          max={price[1]}
           step={5000}
           onChange={priceChangeHandler}
+          position='relative'
         >
           <RangeSliderTrack bg='red.100'>
             <RangeSliderFilledTrack bg='tomato' />
           </RangeSliderTrack>
-          <RangeSliderThumb boxSize={6} index={0} ref={priceMinRef}>
-            0
-          </RangeSliderThumb>
-          <RangeSliderThumb boxSize={6} index={1} ref={priceMaxRef}>
-            30000
-          </RangeSliderThumb>
+          <RangeSliderThumb
+            boxSize={15}
+            index={0}
+            ref={priceMinRef}
+            width='50px'
+            height='30px'
+          />
+          <RangeSliderThumb
+            boxSize={15}
+            index={1}
+            ref={priceMaxRef}
+            width='50px'
+            height='30px'
+          />
         </RangeSlider>
       </Stack>
-
       <Stack
         w='100%'
         flexDirection='row'

@@ -5,13 +5,13 @@ export type TCartItem = ITravelInfo & {
   quantity: number
 }
 
-export interface CartState {
+export interface ICartState {
   readonly cartItems: TCartItem[]
 }
 
 const existCart = localStorage.getItem('cart')
 
-const initialState: CartState = {
+const initialState: ICartState = {
   cartItems: existCart ? JSON.parse(existCart) : [],
 }
 

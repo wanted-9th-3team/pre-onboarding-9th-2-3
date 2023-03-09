@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux'
 import { ITravelInfo } from '../../Type'
 import { addCartList } from '../../store/cart/cartSlice'
 import { useAppDispatch } from '../../store/store'
-import { getTravelList } from '../../store/trip/tripSlice'
+import { setSelectedtripList } from '../../store/trip/tripSlice'
 import CardModal from '../modal/CardModal'
 import { selectCartItems } from '../../store/cart/cartSelector'
 
@@ -30,7 +30,7 @@ function TripCard({ travelInfo }: ITripCardProps) {
   const dispatch = useAppDispatch()
 
   const openModalHandler = () => {
-    dispatch(getTravelList(idx))
+    dispatch(setSelectedtripList(idx))
     onOpen()
   }
 

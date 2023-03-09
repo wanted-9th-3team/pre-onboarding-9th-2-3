@@ -1,23 +1,37 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from '../store'
-import { TravelState } from './tripSlice'
+import { ITravelState } from './tripSlice'
 
-const selectCartReducer = (state: RootState): TravelState => state.trip
-export const selectTravelLists = createSelector(
+const selectCartReducer = (state: RootState): ITravelState => state.trip
+
+export const selectTripLists = createSelector(
   [selectCartReducer],
-  travel => travel.travelList
+  trip => trip.tripList
 )
+
+export const selectPriceRange = createSelector(
+  [selectCartReducer],
+  trip => trip.priceRange
+)
+
+export const selectSelectedTripList = createSelector(
+  [selectCartReducer],
+  trip => trip.selectedtripList
+)
+
 export const searchTravelSpaceLists = createSelector(
-  [selectTravelLists],
-  travels => {
-    const spaceList = travels.map(trip => trip.spaceCategory)
-    return new Array(...new Set(spaceList))
+  [selectCartReducer],
+  trips => {
+    const spaceList = trips.tripList.map(trip => trip.spaceCategory)
+    return [...new Set(spaceList)]
   }
 )
+
 export const searchedTripLists = createSelector([selectCartReducer], travel => {
-  const { searchCategory, travelList } = travel
+  const { searchCategory, tripList } = travel
   const { priceRange, selectSpace } = searchCategory
-  const spacesortedTripList = travelList.filter(trip => {
+
+  const spacesortedTripList = tripList.filter(trip => {
     return selectSpace.length ? selectSpace.includes(trip.spaceCategory) : trip
   })
 
@@ -25,3 +39,27 @@ export const searchedTripLists = createSelector([selectCartReducer], travel => {
     list => list.price >= priceRange[0] && list.price <= priceRange[1]
   )
 })
+
+// export const searchedTripListByPrice = createSelector(
+//   [selectCartReducer],
+//   trips => {
+//     const { travelList, priceRange } = trips
+//     const priceSortedTripList = travelList.filter(
+//       list => list.price >= priceRange[0] && list.price <= priceRange[1]
+//     )
+//     return priceSortedTripList
+//   }
+// )
+
+// export const searchedTripListBySpace = createSelector(
+//   [selectCartReducer],
+//   trips => {
+//     const { travelList, selectSpace } = trips
+//     const spacesortedTripList = travelList.filter(trip => {
+//       return selectSpace.length
+//         ? selectSpace.includes(trip.spaceCategory)
+//         : trip
+//     })
+//     return spacesortedTripList
+//   }
+// )

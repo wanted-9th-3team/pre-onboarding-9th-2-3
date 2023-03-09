@@ -1,11 +1,12 @@
-import { Badge, Box, Button, Stack, Text } from '@chakra-ui/react'
+import { Badge, Box, Button, Stack } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 import Logo from '../components/ui/logo'
-import { selectCartCount } from '../store/cart/cartSlice'
+import { selectCartCount } from '../store/cart/cartSelector'
 
 function NavigationPage() {
   const cartCount = useSelector(selectCartCount)
+
   return (
     <>
       <Box

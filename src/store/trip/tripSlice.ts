@@ -1,44 +1,58 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ISearchCategory, ITravelInfo } from '../../Type'
+import getTravelInfo from '../../api/travelApi'
 
-export interface TravelState {
-  readonly travelList: ITravelInfo[]
+export interface ITravelState {
+  readonly tripList: ITravelInfo[]
   readonly searchCategory: ISearchCategory
-  readonly selectedtravelList: ITravelInfo | null
-  readonly loading: boolean
-  readonly error: string
+  readonly priceRange: number[]
+  readonly selectedtripList: ITravelInfo | null
 }
 
-const initialState: TravelState = {
-  travelList: [],
-  searchCategory: { priceRange: [0, 30000], selectSpace: [] },
-  selectedtravelList: null,
-  loading: false,
-  error: '',
+const initialState: ITravelState = {
+  tripList: [],
+  priceRange: [],
+  searchCategory: { priceRange: [], selectSpace: [] },
+  selectedtripList: null,
 }
 
-const travelSlice = createSlice({
-  name: 'travel',
+export const getTrip = createAsyncThunk('trip/getTripStatus', async () => {
+  const response = await getTravelInfo()
+  if (!response) return []
+  return response
+})
+
+const tripSlice = createSlice({
+  name: 'trip',
   initialState,
   reducers: {
-    setTravelLists: (state, action: PayloadAction<ITravelInfo[]>) => {
-      state.travelList = action.payload
-    },
-    getTravelList: (state, action: PayloadAction<number>) => {
-      const [selectedList] = state.travelList.filter(
+    setSelectedtripList: (state, action: PayloadAction<number>) => {
+      const [selectedList] = state.tripList.filter(
         list => list.idx === action.payload
       )
-      state.selectedtravelList = selectedList
+      state.selectedtripList = selectedList
     },
     setSearchCategory: (state, action: PayloadAction<ISearchCategory>) => {
       state.searchCategory = action.payload
     },
-    initTravel: state => {
-      state.travelList = []
+    initTrip: state => {
+      state.tripList = []
     },
+  },
+  extraReducers: builder => {
+    builder.addCase(
+      getTrip.fulfilled,
+      (state, action: PayloadAction<ITravelInfo[]>) => {
+        const { payload } = action
+        const maxPrice = Math.max(...payload.map(trip => trip.price))
+        state.tripList = action.payload
+        state.priceRange = [0, maxPrice]
+        state.searchCategory = { priceRange: [0, maxPrice], selectSpace: [] }
+      }
+    )
   },
 })
 
-export const { setTravelLists, getTravelList, setSearchCategory } =
-  travelSlice.actions
-export default travelSlice.reducer
+export const { setSelectedtripList, setSearchCategory } = tripSlice.actions
+
+export default tripSlice.reducer
