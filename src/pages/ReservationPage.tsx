@@ -1,5 +1,5 @@
 import { Center } from '@chakra-ui/react'
-// import ReservationList from '../components/reservation/ReservationList'
+import ReservationList from '../components/reservation/ReservationList'
 
 function ReservationPage() {
   return (
@@ -9,7 +9,7 @@ function ReservationPage() {
       <Center h='100px'>
         <h1 style={{ fontSize: '30px', fontWeight: 'bold' }}>장바구니</h1>
       </Center>
-      {/* <ReservationList /> */}
+      <ReservationList />
     </div>
   )
 }
