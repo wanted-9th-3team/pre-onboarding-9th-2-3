@@ -47,9 +47,9 @@ npm run dev
 ## 구현 요구사항 목록
 
 1. 유저가 페이지를 처음 열었을 때 “/main”에 도착하도록 만들어주세요
-     -[x] main에는 여행 상품 정보 (mock JSON) 를 활용하여 여행 상품 정보를 노출해야합니다.
-         -[x] 리스트에서 노출해야 하는 정보: `idx, name, mainImage, price, spaceCategory`
-     -[x] 예약 버튼을 달아 예약 버튼을 클릭시 여행 상품 장바구니에서 사용 할 수 있도록 상품 데이터
+     - [x] main에는 여행 상품 정보 (mock JSON) 를 활용하여 여행 상품 정보를 노출해야합니다.
+         - [x] 리스트에서 노출해야 하는 정보: `idx, name, mainImage, price, spaceCategory`
+     - [x] 예약 버튼을 달아 예약 버튼을 클릭시 여행 상품 장바구니에서 사용 할 수 있도록 상품 데이터
     를 저장해주세요.
     - [x] 여행 상품 정보를 클릭했을 때 여행 상품을 자세히 볼 수 있는 모달창을 제작해주세요
         - [x] 모달에서 노출해야 하는 정보: `idx, name, mainImage, description, spaceCategory, price, maximumPurchases, registrationDate`
