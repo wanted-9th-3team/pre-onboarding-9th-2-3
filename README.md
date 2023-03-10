@@ -19,7 +19,7 @@ npm run dev
 
 ## 배포 사이트
 
-[바로가기](http://s3-deploy-cicd.s3-website.ap-northeast-2.amazonaws.com/)
+[바로가기](https://pre-onboarding-9th-2-3.vercel.app/)
 
 ## 🎆 발전된 부분
 
