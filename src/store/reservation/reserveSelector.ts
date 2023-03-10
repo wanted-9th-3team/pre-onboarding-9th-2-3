@@ -1,12 +1,13 @@
 import { createSelector } from '@reduxjs/toolkit'
 import { RootState } from '../store'
-import { ICartState } from './cartSlice'
+import { ICartState } from './reserveSlice'
 
-const selectCartReducer = (state: RootState): ICartState => state.cart
+const selectReservationReducer = (state: RootState): ICartState =>
+  state.reservation
 
 export const selectCartItems = createSelector(
-  [selectCartReducer],
-  cart => cart.cartItems
+  [selectReservationReducer],
+  reservation => reservation.cartItems
 )
 
 export const selectCartTotal = createSelector([selectCartItems], cartItems =>

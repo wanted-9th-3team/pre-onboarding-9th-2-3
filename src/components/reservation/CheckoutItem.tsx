@@ -4,7 +4,7 @@ import {
   clearCartItem,
   removeCartList,
   TCartItem,
-} from '../../store/cart/cartSlice'
+} from '../../store/reservation/reserveSlice'
 import { useAppDispatch } from '../../store/store'
 
 interface CheckoutItemProps {

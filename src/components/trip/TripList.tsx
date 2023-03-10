@@ -4,6 +4,7 @@ import TripCard from './TripCard'
 
 function TripList() {
   const searchedTripList = useSelector(searchedTripLists)
+
   return (
     <div
       style={{

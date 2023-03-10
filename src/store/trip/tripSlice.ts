@@ -47,6 +47,7 @@ const tripSlice = createSlice({
         const maxPrice = Math.max(...payload.map(trip => trip.price))
         state.tripList = action.payload
         state.priceRange = [0, maxPrice]
+        state.searchCategory = { priceRange: [0, maxPrice], selectSpace: [] }
       }
     )
   },

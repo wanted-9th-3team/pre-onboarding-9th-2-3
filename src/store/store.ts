@@ -1,9 +1,11 @@
 import { useDispatch } from 'react-redux'
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import tripReducer from './trip/tripSlice'
+import reservationReducer from './reservation/reserveSlice'
 
 const rootReducer = combineReducers({
   trip: tripReducer,
+  reservation: reservationReducer,
 })
 
 export const store = configureStore({

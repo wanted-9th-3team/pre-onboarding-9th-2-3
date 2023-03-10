@@ -27,8 +27,8 @@ export const searchTravelSpaceLists = createSelector(
   }
 )
 
-export const searchedTripLists = createSelector([selectCartReducer], travel => {
-  const { searchCategory, tripList } = travel
+export const searchedTripLists = createSelector([selectCartReducer], trips => {
+  const { searchCategory, tripList } = trips
   const { priceRange, selectSpace } = searchCategory
 
   const spacesortedTripList = tripList.filter(trip => {

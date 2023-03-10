@@ -1,24 +1,24 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { ITravelInfo } from '../../Type'
+import { ITripInfo } from '../../Type'
 
-export type TCartItem = ITravelInfo & {
+export type TReservationItem = ITripInfo & {
   quantity: number
 }
 
 export interface ICartState {
-  readonly cartItems: TCartItem[]
+  readonly cartItems: TReservationItem[]
 }
 
-const existCart = localStorage.getItem('cart')
+const existCart = localStorage.getItem('reservation')
 
 const initialState: ICartState = {
   cartItems: existCart ? JSON.parse(existCart) : [],
 }
 
 const addCartItem = (
-  cartItems: TCartItem[],
-  productToAdd: ITravelInfo
-): TCartItem[] => {
+  cartItems: TReservationItem[],
+  productToAdd: ITripInfo
+): TReservationItem[] => {
   const existingCartItem = cartItems.find(
     cartItem => cartItem.idx === productToAdd.idx
   )
@@ -35,9 +35,9 @@ const addCartItem = (
 }
 
 const RemoveCartItem = (
-  cartItems: TCartItem[],
-  cartItemToRemove: ITravelInfo
-): TCartItem[] => {
+  cartItems: TReservationItem[],
+  cartItemToRemove: ITripInfo
+): TReservationItem[] => {
   const existingCartItem = cartItems.find(
     item => item.idx === cartItemToRemove.idx
   )
@@ -53,35 +53,35 @@ const RemoveCartItem = (
   )
 }
 
-const cartSlice = createSlice({
-  name: 'cart',
+const reservationSlice = createSlice({
+  name: 'reservation',
   initialState,
   reducers: {
-    addCartList: (state, action: PayloadAction<ITravelInfo>) => {
+    addCartList: (state, action: PayloadAction<ITripInfo>) => {
       const newCartItems = addCartItem(state.cartItems, action.payload)
-      localStorage.setItem('cart', JSON.stringify(newCartItems))
+      localStorage.setItem('reservation', JSON.stringify(newCartItems))
       state.cartItems = newCartItems
     },
-    removeCartList: (state, action: PayloadAction<ITravelInfo>) => {
+    removeCartList: (state, action: PayloadAction<ITripInfo>) => {
       const newCartItems = RemoveCartItem(state.cartItems, action.payload)
-      localStorage.setItem('cart', JSON.stringify(newCartItems))
+      localStorage.setItem('reservation', JSON.stringify(newCartItems))
 
       state.cartItems = newCartItems
     },
     initCartItem: state => {
       state.cartItems = []
-      localStorage.removeItem('cart')
+      localStorage.removeItem('reservation')
     },
     clearCartItem: (state, action: PayloadAction<number>) => {
       const newCartItems = state.cartItems.filter(
         items => items.idx !== action.payload
       )
-      localStorage.setItem('cart', JSON.stringify(newCartItems))
+      localStorage.setItem('reservation', JSON.stringify(newCartItems))
       state.cartItems = newCartItems
     },
   },
 })
 
 export const { addCartList, removeCartList, initCartItem, clearCartItem } =
-  cartSlice.actions
-export default cartSlice.reducer
+  reservationSlice.actions
+export default reservationSlice.reducer
