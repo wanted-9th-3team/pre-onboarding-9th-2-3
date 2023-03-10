@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ISearchCategory, ITripInfo } from '../../Type'
-import getTravelInfo from '../../api/travelApi'
+import getTravelInfo from '../../api/tripApi'
 
-export interface ITravelState {
+export interface ITripState {
   readonly tripList: ITripInfo[]
   readonly searchCategory: ISearchCategory
   readonly priceRange: number[]
   readonly selectedtripList: ITripInfo | null
 }
 
-const initialState: ITravelState = {
+const initialState: ITripState = {
   tripList: [],
   priceRange: [],
   searchCategory: { priceRange: [], selectSpace: [] },

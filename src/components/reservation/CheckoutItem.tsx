@@ -1,14 +1,15 @@
 import { Box, Button, Card, CardBody, Image, Text } from '@chakra-ui/react'
 import {
-  addCartList,
-  clearCartItem,
-  removeCartList,
-  TCartItem,
-} from '../../store/reservation/reserveSlice'
+  addReservationList,
+  clearReservationItem,
+  removeReservationList,
+  TReservationItem,
+} from '../../store/reservation/reservationSlice'
+
 import { useAppDispatch } from '../../store/store'
 
 interface CheckoutItemProps {
-  items: TCartItem
+  items: TReservationItem
 }
 
 function CheckoutItem({ items }: CheckoutItemProps) {
@@ -54,13 +55,16 @@ function CheckoutItem({ items }: CheckoutItemProps) {
             alignItems='center'
             justifyContent='center'
           >
-            <Button size='xs' onClick={() => dispatch(removeCartList(items))}>
+            <Button
+              size='xs'
+              onClick={() => dispatch(removeReservationList(items))}
+            >
               &#10094;
             </Button>
             <Text width='50px'>{quantity}</Text>
             <Button
               size='xs'
-              onClick={() => dispatch(addCartList(items))}
+              onClick={() => dispatch(addReservationList(items))}
               isDisabled={isPurchase}
             >
               &#10095;
@@ -72,7 +76,7 @@ function CheckoutItem({ items }: CheckoutItemProps) {
       <Button
         size='xs'
         colorScheme='red'
-        onClick={() => dispatch(clearCartItem(idx))}
+        onClick={() => dispatch(clearReservationItem(idx))}
       >
         &#10005;
       </Button>

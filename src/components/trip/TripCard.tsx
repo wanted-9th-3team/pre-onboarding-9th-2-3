@@ -12,11 +12,11 @@ import {
 } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { ITripInfo } from '../../Type'
-import { addCartList } from '../../store/reservation/reserveSlice'
 import { useAppDispatch } from '../../store/store'
 import { setSelectedtripList } from '../../store/trip/tripSlice'
 import CardModal from '../modal/CardModal'
-import { selectCartItems } from '../../store/reservation/reserveSelector'
+import { selectReservationItems } from '../../store/reservation/reservationSelector'
+import { addReservationList } from '../../store/reservation/reservationSlice'
 
 interface ITripCardProps {
   travelInfo: ITripInfo
@@ -24,7 +24,7 @@ interface ITripCardProps {
 
 function TripCard({ travelInfo }: ITripCardProps) {
   const { idx, name, mainImage, price, spaceCategory } = travelInfo
-  const selectedCartItem = useSelector(selectCartItems)
+  const selectedReservationItem = useSelector(selectReservationItems)
   const { isOpen, onOpen, onClose } = useDisclosure()
   const toast = useToast()
   const dispatch = useAppDispatch()
@@ -35,7 +35,7 @@ function TripCard({ travelInfo }: ITripCardProps) {
   }
 
   const addToCartHandler = () => {
-    if (selectedCartItem.find(item => item.idx === idx)) {
+    if (selectedReservationItem.find(item => item.idx === idx)) {
       toast({
         title: '오류',
         description: '이미 장바구니에 존재합니다.',
@@ -53,7 +53,7 @@ function TripCard({ travelInfo }: ITripCardProps) {
         isClosable: true,
         position: 'top',
       })
-      dispatch(addCartList(travelInfo))
+      dispatch(addReservationList(travelInfo))
     }
   }
   return (

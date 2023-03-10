@@ -3,10 +3,10 @@ import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import {
-  selectCartItems,
-  selectCartTotal,
-} from '../../store/reservation/reserveSelector'
-import { initCartItem } from '../../store/reservation/reserveSlice'
+  selectReservationItems,
+  selectReservationTotal,
+} from '../../store/reservation/reservationSelector'
+import { initReservationItem } from '../../store/reservation/reservationSlice'
 import { useAppDispatch } from '../../store/store'
 import CheckoutItem from './CheckoutItem'
 
@@ -15,8 +15,9 @@ function ReservationList() {
   const dispatch = useAppDispatch()
   const navigate = useNavigate()
   const toast = useToast()
-  const cartItems = useSelector(selectCartItems)
-  const totalCartPrice = useSelector(selectCartTotal)
+  const reservationItems = useSelector(selectReservationItems)
+  const totalReservationPrice = useSelector(selectReservationTotal)
+
   const orderButtonHandler = () => {
     setIsLoading(true)
     setTimeout(() => {
@@ -29,7 +30,7 @@ function ReservationList() {
         isClosable: true,
         position: 'top',
       })
-      dispatch(initCartItem())
+      dispatch(initReservationItem())
       navigate('/main')
     }, 2000)
   }
@@ -49,8 +50,8 @@ function ReservationList() {
           padding: '10px 0',
         }}
       >
-        {cartItems &&
-          cartItems.map(item => (
+        {reservationItems &&
+          reservationItems.map(item => (
             <li key={item.idx}>
               <CheckoutItem items={item} />
             </li>
@@ -63,12 +64,12 @@ function ReservationList() {
         justifyContent='space-between'
         flexDirection='row'
       >
-        <Text>총 결제 금액: $ {totalCartPrice}</Text>
+        <Text>총 결제 금액: $ {totalReservationPrice}</Text>
         <Button
           colorScheme='blue'
           variant='outline'
           onClick={orderButtonHandler}
-          isDisabled={!cartItems.length}
+          isDisabled={!reservationItems.length}
           isLoading={isLoading}
         >
           결제하기

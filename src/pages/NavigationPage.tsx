@@ -2,10 +2,10 @@ import { Badge, Box, Button, Stack } from '@chakra-ui/react'
 import { useSelector } from 'react-redux'
 import { Link, Outlet } from 'react-router-dom'
 import Logo from '../components/ui/logo'
-import { selectCartCount } from '../store/reservation/reserveSelector'
+import { selectReservationCount } from '../store/reservation/reservationSelector'
 
 function NavigationPage() {
-  const cartCount = useSelector(selectCartCount)
+  const reservationCount = useSelector(selectReservationCount)
 
   return (
     <>
@@ -34,7 +34,7 @@ function NavigationPage() {
                 colorScheme='purple'
                 fontSize='1rem'
               >
-                {cartCount}
+                {reservationCount}
               </Badge>
             </Button>
           </Stack>
