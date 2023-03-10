@@ -64,7 +64,7 @@ npm run dev
     
     
 ## 파일구조
-
+```
 📦src
  ┣ 📂api
  ┃ ┗ 📜travelApi.tsx
@@ -103,3 +103,4 @@ npm run dev
  ┣ 📜main.tsx
  ┣ 📜setupTests.ts
  ┗ 📜vite-env.d.ts
+```
