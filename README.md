@@ -72,7 +72,7 @@ npm run dev
 
 #### a. 필터링
 
-````typescript
+```typescript
 export const searchedTripLists = createSelector([selectCartReducer], trips => {
 const { searchCategory, tripList } = trips
 const { priceRange, selectSpace } = searchCategory
@@ -85,7 +85,7 @@ return spacesortedTripList.filter(
     list => list.price >= priceRange[0] && list.price <= priceRange[1]
 )
 })
-    ```
+```
 
 <br/>
 
