@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-const getTravelInfo = async () => {
-  const response = await axios('src/data/mock_data.json')
+const getTripInfo = async () => {
+  const response = await axios('mock_data.json')
 
   if (response.status === 200) {
     const { data } = response
@@ -10,4 +10,4 @@ const getTravelInfo = async () => {
   return null
 }
 
-export default getTravelInfo
+export default getTripInfo

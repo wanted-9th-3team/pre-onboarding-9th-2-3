@@ -1,9 +1,10 @@
 import { useSelector } from 'react-redux'
-// import { searchedTripLists } from '../../store/trip/tripSelector'
+import { searchedTripLists } from '../../store/trip/tripSelector'
 import TripCard from './TripCard'
 
 function TripList() {
-  // const searchedTripList = useSelector(searchedTripLists)
+  const searchedTripList = useSelector(searchedTripLists)
+
   return (
     <div
       style={{
@@ -13,9 +14,9 @@ function TripList() {
         gap: '10px',
       }}
     >
-      {/* {searchedTripList.map(travel => {
+      {searchedTripList.map(travel => {
         return <TripCard key={travel.idx} travelInfo={travel} />
-      })} */}
+      })}
     </div>
   )
 }
