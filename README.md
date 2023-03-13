@@ -1,5 +1,5 @@
 # ✈️ 라이크어로컬 pre-onboarding-9th-2-3 과제 제출
-
+수정
 <p>
 <img alt="Typescript" src="https://img.shields.io/badge/Typescript-v4.9.4-3178C6?style=plastic&logoColor=white%22/%3E"/>
 <img alt="React" src="https://img.shields.io/badge/React-v18.2.0-61DAFB?style=plastic&logo=react&logoColor=white"/>
